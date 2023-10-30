@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -16,7 +17,12 @@
 
 <h3>Welcome to the HMRC Onboarding App!</h3>
 
-<p th:text="'It is currently ' + ${theDate}"/>
+<!-- Display user name and role -->
+<p>
+    User: <span sec:authentication="principal.username"></span>
+    <br><br>
+    Role(s): <span sec:authentication="principal.authorities"></span>
+</p>
 
 Please select an option below:
 
