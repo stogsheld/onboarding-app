@@ -5,10 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+// REST Controller for home related requests
 @Controller
 @RequestMapping("/home")
 public class HomeRestController {
 
+
+    // Access the welcome page
     @GetMapping("/welcome")
     public String homePage(Model theModel) {
 
@@ -16,15 +20,4 @@ public class HomeRestController {
 
         return "home/welcome";
     }
-
-    @GetMapping("/login")
-    public String loginPage(Model theModel) {
-
-        theModel.addAttribute("theDate", new java.util.Date());
-
-        return "home/login";
-    }
-
-
-
 }

@@ -4,6 +4,7 @@ import capstone.csc8429.onboardingapp.entity.Course;
 
 import java.util.List;
 
+
 public interface CourseService {
 
     List<Course> findAll();

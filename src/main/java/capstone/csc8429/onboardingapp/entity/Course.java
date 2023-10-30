@@ -2,8 +2,9 @@ package capstone.csc8429.onboardingapp.entity;
 
 import jakarta.persistence.*;
 
+
 @Entity
-@Table(name = "course")
+@Table(name = "course_info")
 public class Course {
 
     @Id
@@ -60,7 +61,6 @@ public class Course {
 
 
     // toString()
-
     @Override
     public String toString() {
         return "Course{" +

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+// REST Controller for course related requests
 @Controller
 @RequestMapping("/courses")
 public class CourseRestController {
@@ -18,6 +20,8 @@ public class CourseRestController {
         courseService = theCourseService;
     }
 
+
+    // Access the list of courses
     @GetMapping("/list")
     public String listCourses(Model theModel) {
 
@@ -28,6 +32,8 @@ public class CourseRestController {
         return "courses/list-courses";
     }
 
+
+    // Access individual course view
     @GetMapping("/viewCourse")
     public String viewCourse(@RequestParam("courseId") int theId, Model theModel) {
 

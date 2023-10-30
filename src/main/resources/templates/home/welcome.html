@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -17,7 +17,7 @@
 
 <h3>Welcome to the HMRC Onboarding App!</h3>
 
-<!-- Display user name and role -->
+<!-- Display username and role -->
 <p>
     User: <span sec:authentication="principal.username"></span>
     <br><br>
@@ -26,20 +26,37 @@
 
 Please select an option below:
 
-<a th:href="@{/home/login}"
-   class="btn btn-info btn-sm">
-    Login
-</a>
-
+<br><br>
 <a th:href="@{/onboarding/onboarding-home}"
    class="btn btn-info btn-sm">
     Onboarding
 </a>
 
+<br><br>
 <a th:href="@{/courses/list}"
    class="btn btn-info btn-sm">
     Courses
 </a>
+
+<div sec:authorize="hasRole('ADMIN')">
+
+    <!-- Hiding Admin button so that only users with 'admin' role are able to see button -->
+    <br>
+    <a th:href="@{/admin/admin-home}"
+       class="btn btn-info btn-sm">
+        Admin
+    </a>
+
+</div>
+
+<hr>
+
+<!-- Add a logout button -->
+<form action="#" th:action="@{/logout}" method="POST">
+
+    <input type="submit" value="Logout"/>
+
+</form>
 
 </body>
 </html>
