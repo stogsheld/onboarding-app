@@ -18,20 +18,25 @@ public class Course {
     @Column(name = "course_description")
     private String courseDescription;
 
+    @Column(name = "course_content")
+    private String courseContent;
+
 
     // Constructors
     public Course() {
     }
 
-    public Course(int courseId, String courseName, String courseDescription) {
+    public Course(int courseId, String courseName, String courseDescription, String courseContent) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
+        this.courseContent = courseContent;
     }
 
-    public Course(String courseName, String courseDescription) {
+    public Course(String courseName, String courseDescription, String courseContent) {
         this.courseName = courseName;
         this.courseDescription = courseDescription;
+        this.courseContent = courseContent;
     }
 
     // Getters/Setters
@@ -59,14 +64,23 @@ public class Course {
         this.courseDescription = courseDescription;
     }
 
+    public String getCourseContent() {
+        return courseContent;
+    }
+
+    public void setCourseContent(String courseContent) {
+        this.courseContent = courseContent;
+    }
 
     // toString()
+
     @Override
     public String toString() {
         return "Course{" +
                 "courseId=" + courseId +
                 ", courseName='" + courseName + '\'' +
                 ", courseDescription='" + courseDescription + '\'' +
+                ", courseContent='" + courseContent + '\'' +
                 '}';
     }
 }

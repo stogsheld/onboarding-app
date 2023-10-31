@@ -10,31 +10,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-    <title>View Course</title>
+    <title>Course Quiz</title>
 </head>
-
 <body>
 
-<div class="container">
+    <p th:each="tempQuestion : ${questions}">
+        <b th:text="${tempQuestion.questionContent}"/>
 
-    <h3>View Course Summary</h3>
-
-    <p th:text="'Course ID: ' + ${course.courseId}"/>
-    <br>
-    <p th:text="'Course Name: ' + ${course.courseName}"/>
-    <br>
-    <p th:text="'Course ID: ' + ${course.courseDescription}"/>
-
-    <br><br>
-
-    <a th:href="@{startCourse(courseId=${course.courseId})}">Start Course</a>
-
-    <br><br>
-
-    <a th:href="@{/courses/list}">Back to Course list</a>
-
-</div>
-
-
+        <br><br>
+    </p>
 </body>
 </html>

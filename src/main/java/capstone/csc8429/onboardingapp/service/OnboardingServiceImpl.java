@@ -43,6 +43,11 @@ public class OnboardingServiceImpl implements OnboardingService{
 
     @Override
     public void save(Onboarding theOnboarding) {
+        onboardingRepo.save(theOnboarding);
+    }
 
+    @Override
+    public void deleteById(int theId) {
+        onboardingRepo.deleteById(theId);
     }
 }

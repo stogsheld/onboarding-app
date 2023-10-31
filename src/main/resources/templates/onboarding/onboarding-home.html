@@ -18,6 +18,34 @@
 
 This is the Onboarding home page.
 
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+    <tr>
+        <th>Onboarding</th>
+        <th>Progress</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>Welcome</td>
+        <td th:text="${onboarding_progress.welcomeCompletion}"></td>
+    </tr>
+    <tr>
+        <td>Data Ethics</td>
+        <td th:text="${onboarding_progress.dataEthicsCompletion}"></td>
+    </tr>
+    <tr>
+        <td>Setup</td>
+        <td th:text="${onboarding_progress.setupCompletion}"></td>
+    </tr>
+    <tr>
+        <td>Meet The Team</td>
+        <td th:text="${onboarding_progress.meetTeamCompletion}"></td>
+    </tr>
+    </tbody>
+</table>
+
 
 <a th:href="@{/home/welcome}"
    class="btn btn-info btn-sm">

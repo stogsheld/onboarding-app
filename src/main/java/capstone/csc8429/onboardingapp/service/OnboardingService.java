@@ -4,6 +4,8 @@ import capstone.csc8429.onboardingapp.entity.Onboarding;
 
 import java.util.List;
 
+
+// Implementing CRUD methods for onboarding_info table
 public interface OnboardingService {
 
     List<Onboarding> findAll();
@@ -11,4 +13,6 @@ public interface OnboardingService {
     Onboarding findById(int theId);
 
     void save(Onboarding theOnboarding);
+
+    void deleteById(int theId);
 }

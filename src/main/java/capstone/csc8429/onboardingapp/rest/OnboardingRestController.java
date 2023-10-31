@@ -2,6 +2,9 @@ package capstone.csc8429.onboardingapp.rest;
 
 import capstone.csc8429.onboardingapp.entity.Onboarding;
 import capstone.csc8429.onboardingapp.service.OnboardingService;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +28,12 @@ public class OnboardingRestController {
 
     // Navigation to the onboarding landing page
     @GetMapping("/onboarding-home")
-    public String onboardingLandingPage(@RequestParam("userId") int theId, Model theModel) {
+    public String onboardingLandingPage(Model theModel) {
 
-        Onboarding theOnboarding = onboardingService.findById(theId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        int userId = Integer.parseInt(authentication.getName());
+
+        Onboarding theOnboarding = onboardingService.findById(userId);
 
         theModel.addAttribute("onboarding_progress", theOnboarding);
 
