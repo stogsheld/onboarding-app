@@ -41,8 +41,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> findQuestionsByCourseId(int courseId) {
-        return questionRepo.findQuestionsByCourseId(courseId);
+    public List<Question> findAllByCourseId(int courseId) {
+        return questionRepo.findAllByCourseId(courseId);
     }
 
     @Override

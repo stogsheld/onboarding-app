@@ -11,7 +11,7 @@ public interface QuestionService {
 
     Question findById(int theId);
 
-    List <Question> findQuestionsByCourseId(int courseId);
+    List <Question> findAllByCourseId(int courseId);
 
     void save(Question theQuestion);
 

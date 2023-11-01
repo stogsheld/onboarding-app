@@ -10,11 +10,14 @@ import jakarta.persistence.Table;
 public class Question {
 
     @Id
-    @Column(name = "course_id")
-    private int courseId;
-
     @Column(name = "question_id")
     private int questionId;
+
+    @Column(name = "question_number")
+    private int questionNumber;
+
+    @Column(name = "course_id")
+    private int courseId;
 
     @Column(name = "question_content")
     private String questionContent;
@@ -24,28 +27,36 @@ public class Question {
     public Question() {
     }
 
-    public Question(int courseId, int questionId, String questionContent) {
-        this.courseId = courseId;
+    public Question(int questionId, int questionNumber, int courseId, String questionContent) {
         this.questionId = questionId;
+        this.questionNumber = questionNumber;
+        this.courseId = courseId;
         this.questionContent = questionContent;
     }
 
-
     // Getters/Setters
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
     public int getQuestionId() {
         return questionId;
     }
 
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
+    }
+
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     public String getQuestionContent() {
@@ -58,11 +69,13 @@ public class Question {
 
 
     // toString()
+
     @Override
     public String toString() {
         return "Question{" +
-                "courseId=" + courseId +
-                ", questionId=" + questionId +
+                "questionId=" + questionId +
+                ", questionNumber=" + questionNumber +
+                ", courseId=" + courseId +
                 ", questionContent='" + questionContent + '\'' +
                 '}';
     }

@@ -69,7 +69,7 @@ public class CourseRestController {
     public String viewQuiz(@RequestParam("courseId") int theId, Model theModel) {
 
 
-        List<Question> questions = questionService.findQuestionsByCourseId(theId);
+        List<Question> questions = questionService.findAllByCourseId(theId);
 
         System.out.println(questions);
 
