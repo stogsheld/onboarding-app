@@ -15,5 +15,4 @@ public interface AnswerService {
     void save(Answer theAnswer);
 
     void deleteById(int theId);
-
 }

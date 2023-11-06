@@ -8,7 +8,6 @@ import jakarta.persistence.*;
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "course_id")
     private int courseId;
 

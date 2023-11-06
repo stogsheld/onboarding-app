@@ -1,21 +1,13 @@
 package capstone.csc8429.onboardingapp.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "course_answer")
 public class Answer {
 
     @Id
-    @Column(name = "course_id")
-    private int courseId;
-
-    @Column(name = "question_id")
-    private int questionId;
-
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "answer_id")
     private int answerId;
 
@@ -25,14 +17,21 @@ public class Answer {
     @Column(name = "correct_answer")
     private int correctAnswer;
 
+    @Column(name = "course_id")
+    private int courseId;
+
+    @Column(name = "question_number")
+    private int questionNumber;
+
+
 
     // Constructors
     public Answer() {
     }
 
-    public Answer(int courseId, int questionId, int answerId, String answerContent, int correctAnswer) {
+    public Answer(int courseId, int questionNumber, int answerId, String answerContent, int correctAnswer) {
         this.courseId = courseId;
-        this.questionId = questionId;
+        this.questionNumber = questionNumber;
         this.answerId = answerId;
         this.answerContent = answerContent;
         this.correctAnswer = correctAnswer;
@@ -40,22 +39,6 @@ public class Answer {
 
 
     // Getters/Setters
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
-    public int getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
-    }
-
     public int getAnswerId() {
         return answerId;
     }
@@ -80,16 +63,33 @@ public class Answer {
         this.correctAnswer = correctAnswer;
     }
 
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
+    }
+
 
     // toString()
+
     @Override
     public String toString() {
         return "Answer{" +
-                "courseId=" + courseId +
-                ", questionId=" + questionId +
-                ", answerId=" + answerId +
+                "answerId=" + answerId +
                 ", answerContent='" + answerContent + '\'' +
                 ", correctAnswer=" + correctAnswer +
+                ", courseId=" + courseId +
+                ", questionNumber=" + questionNumber +
                 '}';
     }
 }
