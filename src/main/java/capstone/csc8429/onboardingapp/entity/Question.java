@@ -20,16 +20,38 @@ public class Question {
     @Column(name = "question_content")
     private String questionContent;
 
+    @Column(name = "answer_one")
+    private String answerOne;
+
+    @Column(name = "answer_two")
+    private String answerTwo;
+
+    @Column(name = "answer_three")
+    private String answerThree;
+
+    @Column(name = "answer_four")
+    private String answerFour;
+
+    @Column(name = "correct_answer")
+    private int correctAnswer;
+
 
     // Constructors
     public Question() {
     }
 
-    public Question(int questionId, int questionNumber, int courseId, String questionContent) {
+    public Question(int questionId, int questionNumber, int courseId,
+                    String questionContent, String answerOne, String answerTwo,
+                    String answerThree, String answerFour, int correctAnswer) {
         this.questionId = questionId;
         this.questionNumber = questionNumber;
         this.courseId = courseId;
         this.questionContent = questionContent;
+        this.answerOne = answerOne;
+        this.answerTwo = answerTwo;
+        this.answerThree = answerThree;
+        this.answerFour = answerFour;
+        this.correctAnswer = correctAnswer;
     }
 
     // Getters/Setters
@@ -65,9 +87,48 @@ public class Question {
         this.questionContent = questionContent;
     }
 
+    public String getAnswerOne() {
+        return answerOne;
+    }
+
+    public void setAnswerOne(String answerOne) {
+        this.answerOne = answerOne;
+    }
+
+    public String getAnswerTwo() {
+        return answerTwo;
+    }
+
+    public void setAnswerTwo(String answerTwo) {
+        this.answerTwo = answerTwo;
+    }
+
+    public String getAnswerThree() {
+        return answerThree;
+    }
+
+    public void setAnswerThree(String answerThree) {
+        this.answerThree = answerThree;
+    }
+
+    public String getAnswerFour() {
+        return answerFour;
+    }
+
+    public void setAnswerFour(String answerFour) {
+        this.answerFour = answerFour;
+    }
+
+    public int getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(int correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
 
     // toString()
-
     @Override
     public String toString() {
         return "Question{" +
@@ -75,6 +136,11 @@ public class Question {
                 ", questionNumber=" + questionNumber +
                 ", courseId=" + courseId +
                 ", questionContent='" + questionContent + '\'' +
+                ", answerOne='" + answerOne + '\'' +
+                ", answerTwo='" + answerTwo + '\'' +
+                ", answerThree='" + answerThree + '\'' +
+                ", answerFour='" + answerFour + '\'' +
+                ", correctAnswer=" + correctAnswer +
                 '}';
     }
 }

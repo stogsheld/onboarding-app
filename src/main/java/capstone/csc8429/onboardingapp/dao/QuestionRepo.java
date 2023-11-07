@@ -9,4 +9,5 @@ import java.util.List;
 public interface QuestionRepo extends JpaRepository<Question, Integer> {
 
     public List<Question> findAllByCourseId(int courseId);
+
 }

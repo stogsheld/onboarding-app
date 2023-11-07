@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Quiz</title>
+</head>
+<body>
+
+<h1>Course Quiz</h1>
+
+<form action="#" th:action="@{/courses/processQuizAnswers(courseId=${courseId})}" th:object="${attempt}" method="post">
+
+    <b th:text="${question.get(0).questionContent}"></b>
+    <label>
+        <input type="radio" th:field="*{answerOne}" th:value="1" th:text="${question.get(0).answerOne}">
+        <input type="radio" th:field="*{answerOne}" th:value="2" th:text="${question.get(0).answerTwo}">
+        <input type="radio" th:field="*{answerOne}" th:value="3" th:text="${question.get(0).answerThree}">
+        <input type="radio" th:field="*{answerOne}" th:value="4" th:text="${question.get(0).answerFour}">
+    </label>
+
+
+    <b th:text="${question.get(1).questionContent}"></b>
+    <label>
+        <input type="radio" th:field="*{answerTwo}" th:value="1" th:text="${question.get(1).answerOne}">
+        <input type="radio" th:field="*{answerTwo}" th:value="2" th:text="${question.get(1).answerTwo}">
+        <input type="radio" th:field="*{answerTwo}" th:value="3" th:text="${question.get(1).answerThree}">
+        <input type="radio" th:field="*{answerTwo}" th:value="4" th:text="${question.get(1).answerFour}">
+    </label>
+
+    <b th:text="${question.get(2).questionContent}"></b>
+    <label>
+        <input type="radio" th:field="*{answerThree}" th:value="1" th:text="${question.get(2).answerOne}">
+        <input type="radio" th:field="*{answerThree}" th:value="2" th:text="${question.get(2).answerTwo}">
+        <input type="radio" th:field="*{answerThree}" th:value="3" th:text="${question.get(2).answerThree}">
+        <input type="radio" th:field="*{answerThree}" th:value="4" th:text="${question.get(2).answerFour}">
+    </label>
+
+    <b th:text="${question.get(3).questionContent}"></b>
+    <label>
+        <input type="radio" th:field="*{answerFour}" th:value="1" th:text="${question.get(3).answerOne}">
+        <input type="radio" th:field="*{answerFour}" th:value="2" th:text="${question.get(3).answerTwo}">
+        <input type="radio" th:field="*{answerFour}" th:value="3" th:text="${question.get(3).answerThree}">
+        <input type="radio" th:field="*{answerFour}" th:value="4" th:text="${question.get(3).answerFour}">
+    </label>
+
+    <b th:text="${question.get(4).questionContent}"></b>
+    <label>
+        <input type="radio" th:field="*{answerFive}" th:value="1" th:text="${question.get(4).answerOne}">
+        <input type="radio" th:field="*{answerFive}" th:value="2" th:text="${question.get(4).answerTwo}">
+        <input type="radio" th:field="*{answerFive}" th:value="3" th:text="${question.get(4).answerThree}">
+        <input type="radio" th:field="*{answerFive}" th:value="4" th:text="${question.get(4).answerFour}">
+    </label>
+
+
+
+    <input type="submit" value="Submit"/>
+
+</form>
+
+
+</body>
+</html>

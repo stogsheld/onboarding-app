@@ -1,9 +1,6 @@
 package capstone.csc8429.onboardingapp.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -12,37 +9,37 @@ import java.util.Date;
 public class Completion {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "attempt_no")
+    private int attemptNo;
+
     @Column(name = "user_id")
     private int userId;
 
     @Column(name = "course_id")
     private int courseId;
-
-    @Column(name = "attempt_no")
-    private int attemptNo;
-
+    
     @Column(name = "attempt_score")
     private int attemptScore;
 
     @Column(name = "attempt_date")
-    private Date attemptDate;
+    private String attemptDate;
 
     @Column(name = "completion_date")
-    private Date completionDate;
+    private String completionDate;
 
     @Column(name = "refresher_date")
-    private Date refresherDate;
+    private String refresherDate;
 
 
     // Constructors
     public Completion() {
     }
 
-    public Completion(int userId, int courseId, int attemptNo, int attemptScore,
-                      Date attemptDate, Date completionDate, Date refresherDate) {
+    public Completion(int userId, int courseId, int attemptScore,
+                      String attemptDate, String completionDate, String refresherDate) {
         this.userId = userId;
         this.courseId = courseId;
-        this.attemptNo = attemptNo;
         this.attemptScore = attemptScore;
         this.attemptDate = attemptDate;
         this.completionDate = completionDate;
@@ -83,30 +80,29 @@ public class Completion {
         this.attemptScore = attemptScore;
     }
 
-    public Date getAttemptDate() {
+    public String getAttemptDate() {
         return attemptDate;
     }
 
-    public void setAttemptDate(Date attemptDate) {
+    public void setAttemptDate(String attemptDate) {
         this.attemptDate = attemptDate;
     }
 
-    public Date getCompletionDate() {
+    public String getCompletionDate() {
         return completionDate;
     }
 
-    public void setCompletionDate(Date completionDate) {
+    public void setCompletionDate(String completionDate) {
         this.completionDate = completionDate;
     }
 
-    public Date getRefresherDate() {
+    public String getRefresherDate() {
         return refresherDate;
     }
 
-    public void setRefresherDate(Date refresherDate) {
+    public void setRefresherDate(String refresherDate) {
         this.refresherDate = refresherDate;
     }
-
 
     // toString()
     @Override
