@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Admin - Add User</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/admin/processUser}" th:object="${user}" method="POST">
+
+    Employee ID: <input type="number" th:field="*{userId}">
+
+    <br><br>
+
+    First Name: <input type="text" th:field="*{firstName}">
+
+    <br><br>
+
+    Last Name: <input type="text" th:field="*{lastName}">
+
+    <br><br>
+
+    Career Level: <input type="number" th:field="*{careerLevel}">
+
+    <br><br>
+
+    Team ID: <input type="text" th:field="*{teamId}">
+
+    <br><br>
+
+    Email: <input type="text" th:field="*{email}">
+
+    <br><br>
+
+    <input type="submit" value="Submit">
+
+</form>
+
+
+</body>
+</html>

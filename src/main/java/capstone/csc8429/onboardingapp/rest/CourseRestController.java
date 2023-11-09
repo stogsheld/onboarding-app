@@ -1,22 +1,18 @@
 package capstone.csc8429.onboardingapp.rest;
 
-import capstone.csc8429.onboardingapp.entity.Attempt;
-import capstone.csc8429.onboardingapp.entity.Completion;
-import capstone.csc8429.onboardingapp.entity.Course;
-import capstone.csc8429.onboardingapp.entity.Question;
-import capstone.csc8429.onboardingapp.service.AttemptService;
+import capstone.csc8429.onboardingapp.entity.*;
 import capstone.csc8429.onboardingapp.service.CompletionService;
 import capstone.csc8429.onboardingapp.service.CourseService;
 import capstone.csc8429.onboardingapp.service.QuestionService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -29,22 +25,17 @@ public class CourseRestController {
 
     private QuestionService questionService;
 
-    private AttemptService attemptService;
-
     private CompletionService completionService;
 
 
     public CourseRestController(CourseService theCourseService,
                                 QuestionService theQuestionService,
-                                AttemptService theAttemptService,
                                 CompletionService theCompletionService) {
         courseService = theCourseService;
         questionService = theQuestionService;
-        attemptService = theAttemptService;
         completionService = theCompletionService;
 
     }
-
 
     // Access the list of courses
     @GetMapping("/list")
@@ -85,6 +76,7 @@ public class CourseRestController {
         return "courses/start-course";
     }
 
+
     @GetMapping("/viewQuiz")
     public String viewQuiz(@RequestParam("courseId") int theId, Model theModel) {
 
@@ -106,50 +98,70 @@ public class CourseRestController {
         // Get all questions for the quiz
         List<Question> question = questionService.findAllByCourseId(theId);
 
-        Attempt attempt = new Attempt();
+        Answers answers = new Answers();
 
         theModel.addAttribute("courseId", theId);
         theModel.addAttribute("question", question);
-        theModel.addAttribute("attempt", attempt);
+        theModel.addAttribute("answers", answers);
 
         return "courses/start-quiz";
     }
 
+
+    // Setting of refresherDays (days before course refresher is needed) from application.properties
+    @Value("${refresherDays}")
+    private int refresherDays;
+
+    // Setting of course pass mark from application.properties
+    @Value("${coursePassMark}")
+    private double coursePassMark;
+
     @PostMapping("processQuizAnswers")
-    public String saveQuizAttempt(@ModelAttribute("attempt") Attempt theAttempt,
+    public String saveQuizAttempt(@ModelAttribute("answers") Answers answers,
                                   @ModelAttribute("courseId") int theId,
                                   Model theModel) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         int userId = Integer.parseInt(authentication.getName());
 
-        theAttempt.setUserId(userId);
-
         List<Question> questions = questionService.findAllByCourseId(theId);
 
-        int[] scores = {theAttempt.getAnswerOne(), theAttempt.getAnswerTwo(), theAttempt.getAnswerThree(),
-                theAttempt.getAnswerFour(), theAttempt.getAnswerFive()};
-
         int totalScore = 0;
+        List<Integer> answerList = answers.getResponses();
 
-        for (int i = 0; i < 5; i++) {
-            if (questions.get(i).getCorrectAnswer() == scores[i]) {
+
+        for (int i = 0; i < questions.size(); i++) {
+            if (questions.get(i).getCorrectAnswer() == answerList.get(i)) {
                 totalScore++;
             }
         }
+        System.out.println("Total score is " + totalScore + ", saving to database...");
 
-        System.out.println("Total score is " + totalScore);
 
-        attemptService.save(theAttempt);
+        java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+        java.sql.Date refresherDate = Date.valueOf(date.toLocalDate().plusDays(refresherDays));
 
-        Completion completion = new Completion(userId, theId, totalScore,
-                null, null, null);
-        completionService.save(completion);
+        System.out.println("Attempt Date: " + date);
+        System.out.println("Refresher Date (if applicable): " + refresherDate);
 
-        theModel.addAttribute("attempt", theAttempt);
+        // Get the pass mark as a percentage
+        double courseMark = (double) (totalScore / questions.size()) * 100;
+
+        String passOrFail;
+
+        if (courseMark < coursePassMark) {
+            Completion completion = new Completion(userId, theId, totalScore,
+                    date);
+            passOrFail = "Fail";
+            completionService.save(completion);
+        } else {
+            Completion completion = new Completion(userId, theId, totalScore, date, date, refresherDate);
+            passOrFail = "Pass";
+            completionService.save(completion);
+        }
+
+        theModel.addAttribute("passOrFail", passOrFail);
 
         return "/courses/finish-quiz";
     }
-
-
 }

@@ -16,50 +16,21 @@
 
 <h1>Course Quiz</h1>
 
-<form action="#" th:action="@{/courses/processQuizAnswers(courseId=${courseId})}" th:object="${attempt}" method="post">
-
-    <b th:text="${question.get(0).questionContent}"></b>
-    <label>
-        <input type="radio" th:field="*{answerOne}" th:value="1" th:text="${question.get(0).answerOne}">
-        <input type="radio" th:field="*{answerOne}" th:value="2" th:text="${question.get(0).answerTwo}">
-        <input type="radio" th:field="*{answerOne}" th:value="3" th:text="${question.get(0).answerThree}">
-        <input type="radio" th:field="*{answerOne}" th:value="4" th:text="${question.get(0).answerFour}">
-    </label>
+<form action="#" th:action="@{/courses/processQuizAnswers(courseId=${courseId})}" th:object="${answers}" method="post">
 
 
-    <b th:text="${question.get(1).questionContent}"></b>
-    <label>
-        <input type="radio" th:field="*{answerTwo}" th:value="1" th:text="${question.get(1).answerOne}">
-        <input type="radio" th:field="*{answerTwo}" th:value="2" th:text="${question.get(1).answerTwo}">
-        <input type="radio" th:field="*{answerTwo}" th:value="3" th:text="${question.get(1).answerThree}">
-        <input type="radio" th:field="*{answerTwo}" th:value="4" th:text="${question.get(1).answerFour}">
-    </label>
+    <p th:each="tempQuestion: ${question}">
 
-    <b th:text="${question.get(2).questionContent}"></b>
-    <label>
-        <input type="radio" th:field="*{answerThree}" th:value="1" th:text="${question.get(2).answerOne}">
-        <input type="radio" th:field="*{answerThree}" th:value="2" th:text="${question.get(2).answerTwo}">
-        <input type="radio" th:field="*{answerThree}" th:value="3" th:text="${question.get(2).answerThree}">
-        <input type="radio" th:field="*{answerThree}" th:value="4" th:text="${question.get(2).answerFour}">
-    </label>
+        <b th:text="${tempQuestion.questionContent}"></b>
+        <label>
+            <input type="checkbox" th:field="${answers.responses}" th:value="1" th:text="${tempQuestion.answerOne}">
+            <input type="checkbox" th:field="${answers.responses}" th:value="2" th:text="${tempQuestion.answerTwo}">
+            <input type="checkbox" th:field="${answers.responses}" th:value="3" th:text="${tempQuestion.answerThree}">
+            <input type="checkbox" th:field="${answers.responses}" th:value="4" th:text="${tempQuestion.answerFour}">
+        </label>
 
-    <b th:text="${question.get(3).questionContent}"></b>
-    <label>
-        <input type="radio" th:field="*{answerFour}" th:value="1" th:text="${question.get(3).answerOne}">
-        <input type="radio" th:field="*{answerFour}" th:value="2" th:text="${question.get(3).answerTwo}">
-        <input type="radio" th:field="*{answerFour}" th:value="3" th:text="${question.get(3).answerThree}">
-        <input type="radio" th:field="*{answerFour}" th:value="4" th:text="${question.get(3).answerFour}">
-    </label>
-
-    <b th:text="${question.get(4).questionContent}"></b>
-    <label>
-        <input type="radio" th:field="*{answerFive}" th:value="1" th:text="${question.get(4).answerOne}">
-        <input type="radio" th:field="*{answerFive}" th:value="2" th:text="${question.get(4).answerTwo}">
-        <input type="radio" th:field="*{answerFive}" th:value="3" th:text="${question.get(4).answerThree}">
-        <input type="radio" th:field="*{answerFive}" th:value="4" th:text="${question.get(4).answerFour}">
-    </label>
-
-
+        <br><br>
+    </p>
 
     <input type="submit" value="Submit"/>
 

@@ -15,14 +15,17 @@ public class User {
     @Column(name = "user_id")
     private int userId;
 
+    @Column(name = "pw")
+    private String password;
+
+    @Column(name = "active")
+    private boolean active;
+
     @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "join_date")
-    private Date joinDate;
 
     @Column(name = "career_level")
     private String careerLevel;
@@ -38,12 +41,24 @@ public class User {
     public User() {
     }
 
-    public User(int userId, String firstName, String lastName, Date joinDate,
-                String careerLevel, String teamId, String email) {
+    public User(int userId, String password, boolean active,
+                String firstName, String lastName, String careerLevel, String email) {
         this.userId = userId;
+        this.password = password;
+        this.active = active;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.joinDate = joinDate;
+        this.careerLevel = careerLevel;
+        this.email = email;
+    }
+
+    public User(int userId, String password, boolean active, String firstName,
+                String lastName, String careerLevel, String teamId, String email) {
+        this.userId = userId;
+        this.password = password;
+        this.active = active;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.careerLevel = careerLevel;
         this.teamId = teamId;
         this.email = email;
@@ -57,6 +72,22 @@ public class User {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getFirstName() {
@@ -73,14 +104,6 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Date getJoinDate() {
-        return joinDate;
-    }
-
-    public void setJoinDate(Date joinDate) {
-        this.joinDate = joinDate;
     }
 
     public String getCareerLevel() {
@@ -107,15 +130,15 @@ public class User {
         this.email = email;
     }
 
-
     //toString()
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
+                ", password='" + password + '\'' +
+                ", active=" + active +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", joinDate=" + joinDate +
                 ", careerLevel='" + careerLevel + '\'' +
                 ", teamId='" + teamId + '\'' +
                 ", email='" + email + '\'' +

@@ -33,10 +33,6 @@ public class OnboardingServiceImpl implements OnboardingService{
         if (result.isPresent()) {
             theOnboarding = result.get();
         }
-        else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find onboarding progress for id - " + theId);
-        }
 
         return theOnboarding;
     }

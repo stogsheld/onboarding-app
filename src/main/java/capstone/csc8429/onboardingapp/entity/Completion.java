@@ -1,8 +1,9 @@
 package capstone.csc8429.onboardingapp.entity;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Value;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "course_completion")
@@ -23,21 +24,20 @@ public class Completion {
     private int attemptScore;
 
     @Column(name = "attempt_date")
-    private String attemptDate;
+    private Date attemptDate;
 
     @Column(name = "completion_date")
-    private String completionDate;
+    private Date completionDate;
 
     @Column(name = "refresher_date")
-    private String refresherDate;
+    private Date refresherDate;
 
 
     // Constructors
     public Completion() {
     }
 
-    public Completion(int userId, int courseId, int attemptScore,
-                      String attemptDate, String completionDate, String refresherDate) {
+    public Completion(int userId, int courseId, int attemptScore, Date attemptDate, Date completionDate, Date refresherDate) {
         this.userId = userId;
         this.courseId = courseId;
         this.attemptScore = attemptScore;
@@ -46,8 +46,21 @@ public class Completion {
         this.refresherDate = refresherDate;
     }
 
+    public Completion(int userId, int courseId, int attemptScore, Date attemptDate) {
+        this.userId = userId;
+        this.courseId = courseId;
+        this.attemptScore = attemptScore;
+        this.attemptDate = attemptDate;
+    }
 
-    // Getters/Setters
+    public int getAttemptNo() {
+        return attemptNo;
+    }
+
+    public void setAttemptNo(int attemptNo) {
+        this.attemptNo = attemptNo;
+    }
+
     public int getUserId() {
         return userId;
     }
@@ -64,14 +77,6 @@ public class Completion {
         this.courseId = courseId;
     }
 
-    public int getAttemptNo() {
-        return attemptNo;
-    }
-
-    public void setAttemptNo(int attemptNo) {
-        this.attemptNo = attemptNo;
-    }
-
     public int getAttemptScore() {
         return attemptScore;
     }
@@ -80,27 +85,27 @@ public class Completion {
         this.attemptScore = attemptScore;
     }
 
-    public String getAttemptDate() {
+    public Date getAttemptDate() {
         return attemptDate;
     }
 
-    public void setAttemptDate(String attemptDate) {
+    public void setAttemptDate(Date attemptDate) {
         this.attemptDate = attemptDate;
     }
 
-    public String getCompletionDate() {
+    public Date getCompletionDate() {
         return completionDate;
     }
 
-    public void setCompletionDate(String completionDate) {
+    public void setCompletionDate(Date completionDate) {
         this.completionDate = completionDate;
     }
 
-    public String getRefresherDate() {
+    public Date getRefresherDate() {
         return refresherDate;
     }
 
-    public void setRefresherDate(String refresherDate) {
+    public void setRefresherDate(Date refresherDate) {
         this.refresherDate = refresherDate;
     }
 

@@ -33,7 +33,14 @@ public class OnboardingRestController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         int userId = Integer.parseInt(authentication.getName());
 
+        // Look for onboarding
         Onboarding theOnboarding = onboardingService.findById(userId);
+
+        // If no onboarding exists, create one
+        if (theOnboarding == null) {
+            theOnboarding = new Onboarding(userId, 0, 0, 0, 0);
+            onboardingService.save(theOnboarding);
+        }
 
         theModel.addAttribute("onboarding_progress", theOnboarding);
 
