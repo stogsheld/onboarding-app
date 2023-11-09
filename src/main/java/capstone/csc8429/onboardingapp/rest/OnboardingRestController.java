@@ -52,6 +52,9 @@ public class OnboardingRestController {
     @GetMapping("/onboarding-setup")
     public String onboardingSetupPage() {
 
+        // Set user's onboarding progress to 1 if it's 0 (i.e. 'start' the course if not already started/completed)
+        setOnboardingProgress(3, 1);
+
         // returning the onboarding-home html file
         return "onboarding/onboarding-setup";
     }
@@ -60,7 +63,55 @@ public class OnboardingRestController {
     @GetMapping("/onboarding-meet-the-team")
     public String onboardingMeetTheTeam() {
 
+        // Set user's onboarding progress to 1 if it's 0 (i.e. 'start' the course if not already started/completed)
+        setOnboardingProgress(4, 1);
+
         // returning the onboarding-home html file
         return "onboarding/onboarding-meet-the-team";
+    }
+
+    public void setOnboardingProgress(int updateOption, int completionSetting) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        int userId = Integer.parseInt(authentication.getName());
+
+        // Look for onboarding
+        Onboarding theOnboarding = onboardingService.findById(userId);
+
+        int currentStatus;
+
+        switch(updateOption) {
+            case 1:
+                currentStatus = theOnboarding.getWelcomeCompletion();
+                if (currentStatus == 2) {
+                    break;
+                }
+                theOnboarding.setWelcomeCompletion(completionSetting);
+                break;
+            case 2:
+                currentStatus = theOnboarding.getDataEthicsCompletion();
+                if (currentStatus == 2) {
+                    break;
+                }
+                theOnboarding.setDataEthicsCompletion(completionSetting);
+                break;
+            case 3:
+                currentStatus = theOnboarding.getSetupCompletion();
+                if (currentStatus == 2) {
+                    break;
+                }
+                theOnboarding.setSetupCompletion(completionSetting);
+                break;
+            case 4:
+                currentStatus = theOnboarding.getMeetTeamCompletion();
+                if (currentStatus == 2) {
+                    break;
+                }
+                theOnboarding.setMeetTeamCompletion(completionSetting);
+                break;
+            default:
+                throw new RuntimeException("Invalid argument");
+        }
+        onboardingService.save(theOnboarding);
     }
 }
