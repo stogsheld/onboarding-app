@@ -12,9 +12,11 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/admin/processAddUser}" th:object="${user}" method="POST">
+<form action="#" th:action="@{/admin/processUpdateUser}" th:object="${user}" method="POST">
 
-    Employee ID: <input type="number" th:field="*{userId}">
+    <b th:text="'Updating Employee ID: ' + *{userId}"/>
+
+    <input type="hidden" th:field="*{userId}">
 
     <br><br>
 
@@ -23,6 +25,18 @@
     <br><br>
 
     Last Name: <input type="text" th:field="*{lastName}">
+
+    <br><br>
+
+    Update Password? (Randomised):
+    <input type="radio" th:field="*{password}" th:value="Yes" th:text="'Yes'">
+    <input type="radio" th:field="*{password}" th:value="*{password}" th:text="'No'">
+
+    <br><br>
+
+    Active:
+    <input type="radio" th:field="*{active}" th:value="1" th:text="'Yes'">
+    <input type="radio" th:field="*{active}" th:value="0" th:text="'No'">
 
     <br><br>
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Admin - View User</title>
+</head>
+<body>
+
+<b th:text="'Viewing Employee ID: ' + ${user.userId}"/>
+
+
+<br><br>
+<i th:text="'First Name: ' + ${user.firstName}"/>
+<br><br>
+<i th:text="'Last Name: ' + ${user.lastName}"/>
+<br><br>
+<i th:text="'Career Level: ' + ${user.careerLevel}"/>
+<br><br>
+<i th:text="'Team ID: ' + ${user.teamId}"/>
+<br><br>
+<i th:text="'Email: ' + ${user.email}"/>
+<br><br>
+<a th:href="@{/admin/updateUser(userId=${user.userId})}">Edit</a>
+
+
+</body>
+</html>

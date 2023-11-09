@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<p th:text="'User has been added! Details are as follows:'"></p>
+<p th:text="'User has been ' + *{addedOrUpdated} + '! Details are as follows:'"></p>
 <br>
 <p th:text="'Password: ' + ${password}"></p>
 
