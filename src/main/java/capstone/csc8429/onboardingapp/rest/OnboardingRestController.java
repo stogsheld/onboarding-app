@@ -70,6 +70,9 @@ public class OnboardingRestController {
         return "onboarding/onboarding-meet-the-team";
     }
 
+
+    // Setting the user's onboarding progress based on the page they are accessing,
+    // and whether the onboarding is 'in progress' or 'complete'
     public void setOnboardingProgress(int updateOption, int completionSetting) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
