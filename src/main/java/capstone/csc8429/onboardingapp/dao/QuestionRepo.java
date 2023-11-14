@@ -10,4 +10,6 @@ public interface QuestionRepo extends JpaRepository<Question, Integer> {
 
     public List<Question> findAllByCourseId(int courseId);
 
+    public void deleteByCourseId(int courseId);
+
 }

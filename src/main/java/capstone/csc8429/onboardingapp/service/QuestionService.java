@@ -2,6 +2,7 @@ package capstone.csc8429.onboardingapp.service;
 
 
 import capstone.csc8429.onboardingapp.entity.Question;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,4 +17,7 @@ public interface QuestionService {
     void save(Question theQuestion);
 
     void deleteById(int theId);
+
+    @Transactional
+    void deleteByCourseId(int id);
 }

@@ -54,4 +54,9 @@ public class QuestionServiceImpl implements QuestionService {
     public void deleteById(int theId) {
         questionRepo.deleteById(theId);
     }
+
+    @Override
+    public void deleteByCourseId(int id) {
+        questionRepo.deleteByCourseId(id);
+    }
 }

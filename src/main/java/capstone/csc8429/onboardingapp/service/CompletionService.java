@@ -12,6 +12,8 @@ public interface CompletionService {
 
     List<Completion> findByUserId(int userId);
 
+    Completion findByUserIdAndCourseId(int userId, int courseId);
+
     void save(Completion theCompletion);
 
     void deleteById(int theId);

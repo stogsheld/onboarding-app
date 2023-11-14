@@ -23,6 +23,7 @@ This is the Onboarding home page.
     <tr>
         <th>Onboarding</th>
         <th>Progress</th>
+        <th>Actions</th>
     </tr>
     </thead>
 
@@ -30,18 +31,42 @@ This is the Onboarding home page.
     <tr>
         <td>Welcome</td>
         <td th:text="${onboarding_progress.welcomeCompletion}"></td>
+        <td>
+            <a th:href="@{/onboarding/onboardingWelcome}"
+               class="btn btn-info btn-sm">
+                Welcome
+            </a>
+        </td>
     </tr>
     <tr>
         <td>Data Ethics</td>
         <td th:text="${onboarding_progress.dataEthicsCompletion}"></td>
+        <td>
+            <a th:href="@{/onboarding/onboardingDataEthics}"
+               class="btn btn-info btn-sm">
+                Data & Ethics
+            </a>
+        </td>
     </tr>
     <tr>
         <td>Setup</td>
         <td th:text="${onboarding_progress.setupCompletion}"></td>
+        <td>
+            <a th:href="@{/onboarding/onboardingSetup}"
+               class="btn btn-info btn-sm">
+                Setup
+            </a>
+        </td>
     </tr>
     <tr>
         <td>Meet The Team</td>
         <td th:text="${onboarding_progress.meetTeamCompletion}"></td>
+        <td>
+            <a th:href="@{/onboarding/onboardingMeetTheTeam}"
+               class="btn btn-info btn-sm">
+                Meet the Team
+            </a>
+        </td>
     </tr>
     </tbody>
 </table>
@@ -53,16 +78,6 @@ This is the Onboarding home page.
 </a>
 
 <br>
-
-<a th:href="@{/onboarding/onboarding-setup}"
-   class="btn btn-info btn-sm">
-    Setup
-</a>
-
-<a th:href="@{/onboarding/onboarding-meet-the-team}"
-   class="btn btn-info btn-sm">
-    Meet the Team
-</a>
 
 </body>
 </html>

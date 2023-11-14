@@ -46,6 +46,11 @@ public class CompletionServiceImpl implements CompletionService{
     }
 
     @Override
+    public Completion findByUserIdAndCourseId(int userId, int courseId) {
+        return completionRepo.findByUserIdAndCourseId(userId, courseId);
+    }
+
+    @Override
     public void save(Completion theCompletion) {
         completionRepo.save(theCompletion);
     }

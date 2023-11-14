@@ -10,30 +10,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-    <title>Onboarding - Meet the Team</title>
+    <title>Onboarding - Data and Ethics Training</title>
 </head>
 <body>
 
-<h3>Onboarding - Meet the Team</h3>
+<h3>Onboarding - Data & Ethics Training</h3>
 
-Meet the team you'll be working with here!
+Please complete the mandatory Data and Ethics training. This can be found in the
+<a th:href="@{/courses/list}">Course list</a>. Once you've passed the course, return here and click the 'complete'
+button to log your progress.
 
-<br><br>
-
-
-<p th:each="tempUser : ${users}">
-    <b th:text="'Name: ' + ${tempUser.firstName} + ' ' + ${tempUser.lastName}"></b>
-    <br><br>
-    <i th:text="'Career Level: ' + ${tempUser.careerLevel}"></i>
-    <br><br>
-    <i th:text="'Email: ' + ${tempUser.email}"></i>
-    <br><br>
-    <br><br>
-</p>
-
-
-
-<a th:href="@{/onboarding/onboardingCompleteMeetTheTeam}"
+<a th:href="@{/onboarding/onboardingCompleteDataEthics}"
    class="btn btn-info btn-sm">
     Complete
 </a>

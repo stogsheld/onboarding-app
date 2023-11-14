@@ -1,13 +1,7 @@
 package capstone.csc8429.onboardingapp.rest;
 
-import capstone.csc8429.onboardingapp.entity.Course;
-import capstone.csc8429.onboardingapp.entity.Onboarding;
-import capstone.csc8429.onboardingapp.entity.Role;
-import capstone.csc8429.onboardingapp.entity.User;
-import capstone.csc8429.onboardingapp.service.CourseService;
-import capstone.csc8429.onboardingapp.service.OnboardingService;
-import capstone.csc8429.onboardingapp.service.RoleService;
-import capstone.csc8429.onboardingapp.service.UserService;
+import capstone.csc8429.onboardingapp.entity.*;
+import capstone.csc8429.onboardingapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -31,13 +25,16 @@ public class AdminRestController {
     private UserService userService;
     private RoleService roleService;
     private OnboardingService onboardingService;
+    private QuestionService questionService;
 
     public AdminRestController(CourseService courseService, UserService userService,
-                               RoleService roleService, OnboardingService onboardingService) {
+                               RoleService roleService, OnboardingService onboardingService,
+                               QuestionService questionService) {
         this.courseService = courseService;
         this.userService = userService;
         this.roleService = roleService;
         this.onboardingService = onboardingService;
+        this.questionService = questionService;
     }
 
     // Setting up password encoder
@@ -49,16 +46,6 @@ public class AdminRestController {
         return "/admin/admin-home";
     }
 
-    @GetMapping("/adminCourses")
-    public String getAdminCourses(Model theModel) {
-
-        List<Course> courseList = courseService.findAll();
-
-        theModel.addAttribute("courses", courseList);
-
-        return "/admin/admin-courses";
-    }
-
     @GetMapping("/adminUsers")
     public String getAdminUsers(Model theModel) {
 
@@ -68,8 +55,6 @@ public class AdminRestController {
 
         return "/admin/admin-users";
     }
-
-    // TODO - CRUD for users
 
     @GetMapping("/addUser")
     public String addUser(Model theModel) {
@@ -159,12 +144,14 @@ public class AdminRestController {
             user.setPassword("{bcrypt}" + encoder.encode(password));
 
             // Add the data to the table
-            userService.save(user);
+
 
             theModel.addAttribute("password", password);
         } else {
             theModel.addAttribute("password", "has not been changed.");
         }
+
+        userService.save(user);
 
         theModel.addAttribute("addedOrUpdated", "updated");
         theModel.addAttribute("user", user);
@@ -184,6 +171,124 @@ public class AdminRestController {
 
         return "redirect:/admin/adminUsers";
     }
+
+
+    @GetMapping("/adminCourses")
+    public String getAdminCourses(Model theModel) {
+
+        List<Course> courseList = courseService.findAll();
+
+        theModel.addAttribute("courses", courseList);
+
+        return "admin/admin-courses";
+    }
+
+    @GetMapping("/addCourse")
+    public String addCourse(Model theModel) {
+
+        Course course = new Course();
+
+        theModel.addAttribute("course", course);
+
+        return "admin/admin-add-course";
+    }
+
+    @PostMapping("/processAddCourse")
+    public String processAddCourse(@ModelAttribute("course") Course course, Model theModel) {
+        courseService.save(course);
+
+        Question question = new Question();
+
+        theModel.addAttribute("question", question);
+        theModel.addAttribute("courseId", course.getCourseId());
+
+        return "admin/admin-add-question";
+    }
+
+    @GetMapping("/addQuestion")
+    public String addQuestion(@RequestParam("courseId") int id, Model theModel) {
+
+        Question question = new Question();
+        theModel.addAttribute("question", question);
+        theModel.addAttribute("courseId", id);
+
+        return "admin/admin-add-question";
+    }
+
+    @PostMapping("/processAddQuestion")
+    public String processAddQuestion(@ModelAttribute("question") Question question,
+                                     @ModelAttribute("courseId") int courseId, Model theModel) {
+
+        Course course = courseService.findById(courseId);
+
+        question.setCourseId(courseId);
+        question.setQuestionNumber(questionService.findAllByCourseId(courseId).size() + 1);
+
+        questionService.save(question);
+
+        theModel.addAttribute("course", course);
+        theModel.addAttribute("addedQuestion", "Question added successfully.");
+
+        return "admin/admin-add-question";
+    }
+
+    @GetMapping("/deleteQuestion")
+    public String deleteQuestion(@RequestParam("questionId") int questionId, Model theModel) {
+
+        // Delete user from ALL tables
+        int courseId = questionService.findById(questionId).getCourseId();
+        questionService.deleteById(questionId);
+
+        theModel.addAttribute("courseId", courseId);
+
+        return "redirect:admin/adminCourses";
+    }
+
+    @GetMapping("/viewCourse")
+    public String viewCourse(@RequestParam("courseId") int id, Model theModel) {
+        Course course = courseService.findById(id);
+        List<Question> questions = questionService.findAllByCourseId(id);
+
+        theModel.addAttribute("course", course);
+        theModel.addAttribute("questions", questions);
+
+        return "admin/admin-view-course";
+    }
+
+    @GetMapping("/updateCourse")
+    public String updateCourse(@RequestParam("courseId") int id, Model theModel) {
+
+        Course course = courseService.findById(id);
+
+        theModel.addAttribute("course", course);
+
+        return "admin/admin-update-course";
+    }
+
+    @PostMapping("/processUpdateCourse")
+    public String processUpdateCourse(@ModelAttribute("course") Course course, Model theModel) {
+
+        // Add the data to the table
+        courseService.save(course);
+
+        theModel.addAttribute("course", course);
+
+        //Return to the list users page
+        return "admin/admin-course-processed";
+    }
+
+    @GetMapping("/deleteCourse")
+    public String deleteCourse(@RequestParam("courseId") int id) {
+
+        // Delete user from ALL tables
+        questionService.deleteByCourseId(id);
+        courseService.deleteById(id);
+
+        return "redirect:admin/adminCourses";
+    }
+
+
+
 
 
 

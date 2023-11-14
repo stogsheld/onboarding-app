@@ -8,4 +8,6 @@ import java.util.List;
 public interface CompletionRepo extends JpaRepository<Completion, Integer> {
 
     public List<Completion> findByUserId(int userId);
+
+    public Completion findByUserIdAndCourseId(int userId, int courseId);
 }
