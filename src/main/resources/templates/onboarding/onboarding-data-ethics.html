@@ -54,21 +54,34 @@
 
 <br><br><br><br>
 
-<h3>Onboarding - Data & Ethics Training</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center">
 
-Please complete the mandatory Data and Ethics training. This can be found in the
-<a th:href="@{/courses/list}">Course list</a>. Once you've passed the course, return here and click the 'complete'
-button to log your progress.
-
-<a th:href="@{/onboarding/onboardingCompleteDataEthics}"
-   class="btn btn-info btn-sm">
-    Complete
-</a>
-
-<a th:href="@{/onboarding/onboardingHome}"
-   class="btn btn-info btn-sm">
-    Onboarding Home
-</a>
+            <h3>Onboarding - Data & Ethics Training</h3>
+            <p>
+                Please complete the mandatory Data and Ethics training. This can be found in the
+                <a th:href="@{/courses/list}">Course list</a>. Once you've passed the course, return here and click the
+                'complete'
+                button to log your progress.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <a th:href="@{/onboarding/onboardingCompleteDataEthics}"
+               class="btn btn-info btn-sm">
+                Complete
+            </a>
+        </div>
+        <div class="col-lg-2">
+            <a th:href="@{/onboarding/onboardingHome}"
+               class="btn btn-info btn-sm">
+                Onboarding Home
+            </a>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

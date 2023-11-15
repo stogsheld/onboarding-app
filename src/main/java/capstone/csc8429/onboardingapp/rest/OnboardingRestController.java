@@ -60,8 +60,15 @@ public class OnboardingRestController {
             onboardingService.save(theOnboarding);
         }
 
+        // Work out how far through the onboarding process the user is in percentage format
+        double onboardingTotalScore = theOnboarding.getWelcomeCompletion() +
+                theOnboarding.getDataEthicsCompletion()
+                + theOnboarding.getSetupCompletion() + theOnboarding.getMeetTeamCompletion();
+        double onboardingCompletionPercentage = (onboardingTotalScore / 8) * 100;
+
         // Add onboarding progress to the model
         theModel.addAttribute("onboarding_progress", theOnboarding);
+        theModel.addAttribute("onboarding_percentage", onboardingCompletionPercentage);
 
         // Return the onboarding home page
         return "onboarding/onboarding-home";
@@ -224,7 +231,7 @@ public class OnboardingRestController {
 
         int currentStatus;
 
-        switch(updateOption) {
+        switch (updateOption) {
             case 1:
                 currentStatus = theOnboarding.getWelcomeCompletion();
                 if (currentStatus == 2) {

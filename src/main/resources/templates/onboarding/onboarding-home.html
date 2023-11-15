@@ -11,7 +11,7 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <!-- Link to the base CSS Stylesheet -->
-    <link rel="stylesheet" th:href="@{/css/welcome.css}">
+    <link rel="stylesheet" th:href="@{/css/onboarding.css}">
 
     <title>Onboarding</title>
 </head>
@@ -54,78 +54,88 @@
 
 <br><br><br><br>
 
-<h3>Onboarding Home</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center">
 
-This is the Onboarding home page.
+            <h3>Onboarding Home</h3>
+            <p>
+                This is the Onboarding home page.
+            </p>
+            <br>
+            <p th:text="'You are currently ' + ${onboarding_percentage} + '% through your onboarding journey!'"></p>
 
-<table class="table table-bordered table-striped">
-    <thead class="table-dark">
-    <tr>
-        <th>Onboarding</th>
-        <th>Progress</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Onboarding</th>
+                    <th>Progress</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
 
-    <tbody>
-    <tr>
-        <td>Welcome</td>
-        <td th:switch="${onboarding_progress.welcomeCompletion}">
-            <p th:case="0">Not Started</p>
-            <p th:case="1">In Progress</p>
-            <p th:case="2">Complete</p>
-        </td>
-        <td>
-            <a th:href="@{/onboarding/onboardingWelcome}"
-               class="btn btn-info btn-sm">
-                Start
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>Data Ethics</td>
-        <td th:switch="${onboarding_progress.dataEthicsCompletion}">
-            <p th:case="0">Not Started</p>
-            <p th:case="1">In Progress</p>
-            <p th:case="2">Complete</p>
-        </td>
-        <td>
-            <a th:href="@{/onboarding/onboardingDataEthics}"
-               class="btn btn-info btn-sm">
-                Start
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>Setup</td>
-        <td th:switch="${onboarding_progress.setupCompletion}">
-            <p th:case="0">Not Started</p>
-            <p th:case="1">In Progress</p>
-            <p th:case="2">Complete</p>
-        </td>
-        <td>
-            <a th:href="@{/onboarding/onboardingSetup}"
-               class="btn btn-info btn-sm">
-                Start
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>Meet The Team</td>
-        <td th:switch="${onboarding_progress.meetTeamCompletion}">
-            <p th:case="0">Not Started</p>
-            <p th:case="1">In Progress</p>
-            <p th:case="2">Complete</p>
-        </td>
-        <td>
-            <a th:href="@{/onboarding/onboardingMeetTheTeam}"
-               class="btn btn-info btn-sm">
-                Start
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+                <tbody>
+                <tr>
+                    <td>Welcome</td>
+                    <td th:switch="${onboarding_progress.welcomeCompletion}">
+                        <p th:case="0">Not Started</p>
+                        <p th:case="1">In Progress</p>
+                        <p th:case="2">Complete</p>
+                    </td>
+                    <td>
+                        <a th:href="@{/onboarding/onboardingWelcome}"
+                           class="btn btn-info btn-sm">
+                            Start
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Ethics</td>
+                    <td th:switch="${onboarding_progress.dataEthicsCompletion}">
+                        <p th:case="0">Not Started</p>
+                        <p th:case="1">In Progress</p>
+                        <p th:case="2">Complete</p>
+                    </td>
+                    <td>
+                        <a th:href="@{/onboarding/onboardingDataEthics}"
+                           class="btn btn-info btn-sm">
+                            Start
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Setup</td>
+                    <td th:switch="${onboarding_progress.setupCompletion}">
+                        <p th:case="0">Not Started</p>
+                        <p th:case="1">In Progress</p>
+                        <p th:case="2">Complete</p>
+                    </td>
+                    <td>
+                        <a th:href="@{/onboarding/onboardingSetup}"
+                           class="btn btn-info btn-sm">
+                            Start
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Meet The Team</td>
+                    <td th:switch="${onboarding_progress.meetTeamCompletion}">
+                        <p th:case="0">Not Started</p>
+                        <p th:case="1">In Progress</p>
+                        <p th:case="2">Complete</p>
+                    </td>
+                    <td>
+                        <a th:href="@{/onboarding/onboardingMeetTheTeam}"
+                           class="btn btn-info btn-sm">
+                            Start
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

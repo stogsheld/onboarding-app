@@ -29,3 +29,8 @@
     display: flex;
     margin: 5%;
 }
+
+thead th {
+    background-color: #460073;
+    color: white;
+}

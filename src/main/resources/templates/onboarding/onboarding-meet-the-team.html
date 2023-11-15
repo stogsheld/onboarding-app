@@ -54,19 +54,31 @@
 
 <br><br><br><br>
 
-<h3>Onboarding - Meet the Team</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center">
 
-Meet the team you'll be working with here!
-
-<a th:href="@{/onboarding/onboardingCompleteMeetTheTeam}"
-   class="btn btn-info btn-sm">
-    Complete
-</a>
-
-<a th:href="@{/onboarding/onboardingHome}"
-   class="btn btn-info btn-sm">
-    Onboarding Home
-</a>
+            <h3>Onboarding - Meet the Team</h3>
+            <p>
+                Meet the team you'll be working with here!
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <a th:href="@{/onboarding/onboardingCompleteMeetTheTeam}"
+               class="btn btn-info btn-sm">
+                Complete
+            </a>
+        </div>
+        <div class="col-lg-2">
+            <a th:href="@{/onboarding/onboardingHome}"
+               class="btn btn-info btn-sm">
+                Onboarding Home
+            </a>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
