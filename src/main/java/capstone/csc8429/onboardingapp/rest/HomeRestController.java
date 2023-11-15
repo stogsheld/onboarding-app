@@ -10,28 +10,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-// REST Controller for home related requests
+/*
+    REST controller to handle any home related mappings
+*/
+
 @Controller
 @RequestMapping("/home")
 public class HomeRestController {
 
+    // Setting up user service so that home controller can access the User DB
     private UserService userService;
 
+    // Constructor for user service
     public HomeRestController(UserService userService) {
         this.userService = userService;
     }
+
 
     // Access the welcome page
     @GetMapping("/welcome")
     public String homePage(Model theModel) {
 
+        // Get user ID from authentication service (currently logged-in user)
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         int userId = Integer.parseInt(authentication.getName());
         User theUser = userService.findById(userId);
 
-        theModel.addAttribute("theDate", new java.util.Date());
+        // Add user details to the model
         theModel.addAttribute("theUser", theUser);
 
+        // Return welcome page
         return "home/welcome";
     }
 }

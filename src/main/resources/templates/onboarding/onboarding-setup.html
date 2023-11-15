@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
+    <!-- Link to the base CSS Stylesheet -->
+    <link rel="stylesheet" th:href="@{/css/welcome.css}">
+
     <title>Onboarding - PC Setup</title>
 </head>
 <body>
@@ -24,11 +27,11 @@
         <!-- Various links that the user can click on to take them to other pages -->
         <div class="collapse navbar-collapse" style=".nav-item-active">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item-active">
+                <li class="nav-item">
                     <!-- Setting this link as 'active', as it is the page we are currently on (will highlight it) -->
                     <a class="nav-link" aria-current="page" th:href="@{/home/welcome}">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item-active">
                     <a class="nav-link" th:href="@{/onboarding/onboardingHome}">Onboarding</a>
                 </li>
                 <li class="nav-item">
@@ -54,6 +57,11 @@
 <h3>Onboarding - PC Setup</h3>
 
 Configure your PC to HMRC services here.
+
+<a th:href="@{/onboarding/onboardingCompleteSetup}"
+   class="btn btn-info btn-sm">
+    Complete
+</a>
 
 <a th:href="@{/onboarding/onboardingHome}"
    class="btn btn-info btn-sm">

@@ -38,6 +38,7 @@ public class Course {
         this.courseContent = courseContent;
     }
 
+
     // Getters/Setters
     public int getCourseId() {
         return courseId;
@@ -71,8 +72,8 @@ public class Course {
         this.courseContent = courseContent;
     }
 
-    // toString()
 
+    // toString()
     @Override
     public String toString() {
         return "Course{" +

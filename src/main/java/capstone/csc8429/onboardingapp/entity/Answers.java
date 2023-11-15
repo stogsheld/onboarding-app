@@ -2,6 +2,7 @@ package capstone.csc8429.onboardingapp.entity;
 
 import java.util.List;
 
+
 public class Answers {
 
     private List<Integer> responses;

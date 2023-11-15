@@ -17,6 +17,8 @@ public class Role {
     @Column(name = "role")
     private String role;
 
+
+    // Constructors
     public Role() {
     }
 
@@ -31,6 +33,8 @@ public class Role {
         this.role = role;
     }
 
+
+    // Getters/Setters
     public int getUserId() {
         return userId;
     }
@@ -56,6 +60,7 @@ public class Role {
     }
 
 
+    // toString()
     @Override
     public String toString() {
         return "Roles{" +

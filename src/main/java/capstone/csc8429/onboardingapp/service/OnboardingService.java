@@ -5,7 +5,7 @@ import capstone.csc8429.onboardingapp.entity.Onboarding;
 import java.util.List;
 
 
-// Implementing CRUD methods for onboarding_info table
+// Onboarding Service so that the app can implement JPARepository DB methods in OnboardingRepo
 public interface OnboardingService {
 
     List<Onboarding> findAll();

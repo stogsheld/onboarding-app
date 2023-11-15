@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Date;
 
+
 @Entity
 @Table(name = "course_completion")
 public class Completion {
@@ -53,6 +54,8 @@ public class Completion {
         this.attemptDate = attemptDate;
     }
 
+
+    // Getters/Setters
     public int getAttemptNo() {
         return attemptNo;
     }
@@ -108,6 +111,7 @@ public class Completion {
     public void setRefresherDate(Date refresherDate) {
         this.refresherDate = refresherDate;
     }
+
 
     // toString()
     @Override

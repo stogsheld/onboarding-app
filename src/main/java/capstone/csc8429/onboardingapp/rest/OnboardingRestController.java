@@ -21,15 +21,20 @@ import java.security.Principal;
 import java.util.List;
 
 
-// REST Controller for onboarding related requests
+/*
+    REST controller to handle any home related mappings
+*/
+
 @Controller
 @RequestMapping("/onboarding")
 public class OnboardingRestController {
 
+    // Setting up various services so that the Onboarding controller can access the DB
     private OnboardingService onboardingService;
     private CompletionService completionService;
     private UserService userService;
 
+    // Constructor for services
     public OnboardingRestController(OnboardingService theOnboardingService,
                                     CompletionService theCompletionService,
                                     UserService theUserService) {
@@ -39,10 +44,11 @@ public class OnboardingRestController {
     }
 
 
-    // Navigation to the onboarding landing page
+    // Onboarding landing page
     @GetMapping("/onboardingHome")
     public String onboardingHome(Model theModel) {
 
+        // Get user's ID
         int userId = getAuthenticationId();
 
         // Look for onboarding
@@ -54,57 +60,71 @@ public class OnboardingRestController {
             onboardingService.save(theOnboarding);
         }
 
+        // Add onboarding progress to the model
         theModel.addAttribute("onboarding_progress", theOnboarding);
 
-        // returning the onboarding-home html file
+        // Return the onboarding home page
         return "onboarding/onboarding-home";
     }
 
+
+    // Onboarding 'welcome to HMRC' page
     @GetMapping("/onboardingWelcome")
     public String onboardingWelcomePage() {
 
         // Set user's onboarding progress to 1 if it's 0 (i.e. 'start' the course if not already started/completed)
         setOnboardingProgress(1, 1);
 
-        // returning the onboarding-home html file
+        // Return the onboarding welcome page
         return "onboarding/onboarding-welcome";
     }
 
+    // Complete onboarding welcome
     @GetMapping("/onboardingCompleteWelcome")
     public String onboardingCompleteWelcome(Model theModel) {
 
         // Set user's onboarding progress to 1 if it's 0 (i.e. 'start' the course if not already started/completed)
         setOnboardingProgress(1, 2);
 
+        // Get user's onboarding progress from the DB
         Onboarding onboarding = onboardingService.findById(getAuthenticationId());
 
+        // Add onboarding progress to the model
         theModel.addAttribute("onboarding_progress", onboarding);
 
-        // returning the onboarding-home html file
+        // Return the onboarding home page
         return "onboarding/onboarding-home";
     }
 
+
+    // Onboarding 'Data Ethics' page
     @GetMapping("/onboardingDataEthics")
     public String onboardingDataEthicsPage() {
 
         // Set user's onboarding progress to 1 if it's 0 (i.e. 'start' the course if not already started/completed)
         setOnboardingProgress(2, 1);
 
-        // returning the onboarding-home html file
+        // Return the onboarding Data Ethics page
         return "onboarding/onboarding-data-ethics";
     }
 
+    //Complete onboarding Data Ethics
     @GetMapping("/onboardingCompleteDataEthics")
     public String onboardingCompleteDataEthics(Model theModel) {
 
+        // Get user ID
         int userId = getAuthenticationId();
 
+        // Get all completions for current user
         List<Completion> completion = completionService.findByUserId(userId);
 
+        // If user has no completions, then create one for Data Ethics course
         if (completion == null) {
             completion.add(new Completion(userId, 1, 0, null, null, null));
         }
 
+        // Check if there is a date of completion for Course ID #1 (the Data Ethics course)
+        // i.e. if course has been passed
         for (int i = 0; i < completion.size(); i++) {
             Completion tempCompletion = completion.get(i);
             if (tempCompletion.getCourseId() == 1) {
@@ -114,16 +134,18 @@ public class OnboardingRestController {
             }
         }
 
-
+        // Get new onboarding based on updated values
         Onboarding onboarding = onboardingService.findById(getAuthenticationId());
 
+        // Add onboarding progress to the model
         theModel.addAttribute("onboarding_progress", onboarding);
 
+        // Return onboarding home page
         return "onboarding/onboarding-home";
     }
 
 
-    // Navigation to the onboarding setup page
+    // Onboarding setup page
     @GetMapping("/onboardingSetup")
     public String onboardingSetupPage() {
 
@@ -134,48 +156,56 @@ public class OnboardingRestController {
         return "onboarding/onboarding-setup";
     }
 
+    // Complete onboarding setup
     @GetMapping("/onboardingCompleteSetup")
     public String onboardingCompleteSetup(Model theModel) {
 
         // Set user's onboarding progress to 1 if it's 0 (i.e. 'start' the course if not already started/completed)
         setOnboardingProgress(3, 2);
 
+        // Get user's onboarding progress
         Onboarding onboarding = onboardingService.findById(getAuthenticationId());
 
+        // Add onboarding progress to the model
         theModel.addAttribute("onboarding_progress", onboarding);
 
-        // returning the onboarding-home html file
+        // Return onboarding home page
         return "onboarding/onboarding-home";
     }
 
 
-
-    // Navigation to the onboarding 'meet the team' page
+    // Onboarding 'Meet the Team' page
     @GetMapping("/onboardingMeetTheTeam")
     public String onboardingMeetTheTeam(Model theModel) {
 
         // Set user's onboarding progress to 1 if it's 0 (i.e. 'start' the course if not already started/completed)
         setOnboardingProgress(4, 1);
 
+        // Get user ID and user's Team ID
         int userId = getAuthenticationId();
         String teamId = userService.findById(userId).getTeamId();
 
+        // Get list of all users in the current user's team
         List<User> users = userService.findByTeamId(teamId);
 
+        // Add other team members to the model
         theModel.addAttribute("users", users);
 
-        // returning the onboarding-home html file
+        // Return onboarding 'Meet the Team' page
         return "onboarding/onboarding-meet-the-team";
     }
 
+    // Complete 'Meet the Team' onboarding
     @GetMapping("/onboardingCompleteMeetTheTeam")
     public String onboardingCompleteMeetTheTeam(Model theModel) {
 
         // Set user's onboarding progress to 1 if it's 0 (i.e. 'start' the course if not already started/completed)
         setOnboardingProgress(4, 2);
 
+        // Get user's onboarding progress
         Onboarding onboarding = onboardingService.findById(getAuthenticationId());
 
+        // Add user's onboarding progress to the model
         theModel.addAttribute("onboarding_progress", onboarding);
 
         // returning the onboarding-home html file
@@ -229,6 +259,8 @@ public class OnboardingRestController {
         onboardingService.save(theOnboarding);
     }
 
+
+    // Get users ID based on currently logged-in user
     public int getAuthenticationId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return Integer.parseInt(authentication.getName());

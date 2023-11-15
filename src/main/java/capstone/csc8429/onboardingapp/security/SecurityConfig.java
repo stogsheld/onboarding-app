@@ -17,8 +17,7 @@ SECURITY CONFIGURATION CLASS
 This class handles the security for the application, with support for encrypted usernames/passwords
 as well as HTTP authorisation. Users will only be able to access content if they are logged in and have
 the correct access rights (e.g. employee, admin).
-
- */
+*/
 
 @Configuration
 public class SecurityConfig {
@@ -30,11 +29,11 @@ public class SecurityConfig {
 
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-        // define query to retrieve a user by username
+        // Retrieve user from user table in DB by username
         jdbcUserDetailsManager.setUsersByUsernameQuery(
                 "select user_id, pw, active from user where user_id=?");
 
-        // define query to retrieve the authorities/roles by username
+        // Retrieve roles from roles table in DB by username
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
                 "select user_id, role from roles where user_id=?");
 
@@ -45,7 +44,6 @@ public class SecurityConfig {
     // checking if the app is in 'test' mode
     @Value("${inTestingMode}")
     private boolean inTestingMode;
-
 
     // Adding support for user authorisation based on their role
     @Bean

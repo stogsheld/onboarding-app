@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
+// Role Service Implementation so that the app can implement JPARepository DB methods in RoleRepo
 @Service
 public class RoleServiceImpl implements RoleService {
 

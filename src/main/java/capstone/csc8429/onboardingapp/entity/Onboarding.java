@@ -80,7 +80,6 @@ public class Onboarding {
 
 
     // toString()
-
     @Override
     public String toString() {
         return "Onboarding{" +

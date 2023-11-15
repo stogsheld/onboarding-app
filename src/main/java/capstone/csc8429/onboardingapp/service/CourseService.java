@@ -5,7 +5,7 @@ import capstone.csc8429.onboardingapp.entity.Course;
 import java.util.List;
 
 
-// Implementing CRUD methods for course_info table
+// Course Service so that the app can implement JPARepository DB methods in CourseRepo
 public interface CourseService {
 
     List<Course> findAll();

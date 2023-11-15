@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
+// Completion Service Implementation so that the app can implement JPARepository DB methods in CompletionRepo
 @Service
 public class CompletionServiceImpl implements CompletionService{
 

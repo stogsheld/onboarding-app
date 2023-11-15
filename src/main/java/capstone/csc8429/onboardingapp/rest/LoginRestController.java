@@ -4,7 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-// REST Controller for login related requests
+/*
+    REST controller to handle any home related mappings
+*/
+
 @Controller
 public class LoginRestController {
 
@@ -16,7 +19,6 @@ public class LoginRestController {
         // return login page
         return "login";
     }
-
 
     // Giving user 'access denied' error if they aren't authorised to access page
     @GetMapping("/access-denied")

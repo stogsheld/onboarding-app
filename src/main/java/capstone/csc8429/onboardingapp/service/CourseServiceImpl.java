@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
+// Course Service Implementation so that the app can implement JPARepository DB methods in CourseRepo
 @Service
 public class CourseServiceImpl implements CourseService {
 

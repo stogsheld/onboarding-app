@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
+// User Service Implementation so that the app can implement JPARepository DB methods in UserRepo
 @Service
 public class UserServiceImpl implements UserService {
 
