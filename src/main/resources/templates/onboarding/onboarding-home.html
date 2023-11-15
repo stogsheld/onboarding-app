@@ -63,7 +63,6 @@ This is the Onboarding home page.
     <tr>
         <th>Onboarding</th>
         <th>Progress</th>
-        <th>Completion Status</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -71,7 +70,6 @@ This is the Onboarding home page.
     <tbody>
     <tr>
         <td>Welcome</td>
-        <td th:text="${onboarding_progress.welcomeCompletion}"></td>
         <td th:switch="${onboarding_progress.welcomeCompletion}">
             <p th:case="0">Not Started</p>
             <p th:case="1">In Progress</p>
@@ -86,7 +84,6 @@ This is the Onboarding home page.
     </tr>
     <tr>
         <td>Data Ethics</td>
-        <td th:text="${onboarding_progress.dataEthicsCompletion}"></td>
         <td th:switch="${onboarding_progress.dataEthicsCompletion}">
             <p th:case="0">Not Started</p>
             <p th:case="1">In Progress</p>
@@ -101,7 +98,6 @@ This is the Onboarding home page.
     </tr>
     <tr>
         <td>Setup</td>
-        <td th:text="${onboarding_progress.setupCompletion}"></td>
         <td th:switch="${onboarding_progress.setupCompletion}">
             <p th:case="0">Not Started</p>
             <p th:case="1">In Progress</p>
@@ -116,7 +112,6 @@ This is the Onboarding home page.
     </tr>
     <tr>
         <td>Meet The Team</td>
-        <td th:text="${onboarding_progress.meetTeamCompletion}"></td>
         <td th:switch="${onboarding_progress.meetTeamCompletion}">
             <p th:case="0">Not Started</p>
             <p th:case="1">In Progress</p>

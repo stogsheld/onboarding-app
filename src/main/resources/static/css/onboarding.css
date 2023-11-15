@@ -1,0 +1,31 @@
+
+
+/* Setting font for whole webpage to Accenture standard font */
+* {
+    font-family: Graphik, sans-serif;
+}
+
+.nav-item-active {
+    background-color: #7500c0;
+}
+
+.nav-link {
+    color: white;
+}
+
+.btn {
+    background-color: #7500c0;
+    color: white;
+}
+
+
+.container {
+    align-items: center;
+}
+
+.col-lg-2, .row{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 5%;
+}

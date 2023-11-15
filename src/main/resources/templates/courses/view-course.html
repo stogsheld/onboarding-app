@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -14,6 +14,43 @@
 </head>
 
 <body>
+
+<!-- Navbar that is fixed to the top of the screen when scrolling -->
+<nav class="navbar navbar-expand-md fixed-top" style="background-color: #460073">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/home/welcome}">
+            <img alt="Accenture's Logo" height="50" th:src="@{/images/accenture-logo.png}">
+        </a>
+
+        <!-- Various links that the user can click on to take them to other pages -->
+        <div class="collapse navbar-collapse" style=".nav-item-active">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <!-- Setting this link as 'active', as it is the page we are currently on (will highlight it) -->
+                    <a class="nav-link" aria-current="page" th:href="@{/home/welcome}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/onboarding/onboardingHome}">Onboarding</a>
+                </li>
+                <li class="nav-item-active">
+                    <a class="nav-link" aria-current="page" th:href="@{/courses/list}">Courses</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link" aria-current="page" th:href="@{/admin/adminHome}">Admin Tools</a>
+                </li>
+            </ul>
+
+            <!-- Add a logout button -->
+            <form action="#" th:action="@{/logout}" method="POST" class="d-flex">
+
+                <input class="btn" type="submit" value="Logout"/>
+
+            </form>
+        </div>
+    </div>
+</nav>
+
+<br><br><br><br>
 
 <div class="container">
 

@@ -11,7 +11,7 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <!-- Link to the base CSS Stylesheet -->
-    <link rel="stylesheet" th:href="@{/css/welcome.css}">
+    <link rel="stylesheet" th:href="@{/css/onboarding.css}">
 
     <title>Onboarding - PC Setup</title>
 </head>
@@ -54,19 +54,115 @@
 
 <br><br><br><br>
 
-<h3>Onboarding - PC Setup</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-lg">
+            <!-- The following content has been generated using Google Bard (https://bard.google.com/?hl=en) on 15/11/2023. -->
+            <h3>Onboarding - Setting up your PC Development Environment</h3>
 
-Configure your PC to HMRC services here.
+            <p>
+                Congratulations on joining our team! We're excited to have you on board.
+                <br><br>
+                As a new member of the HMRC IT team, you'll need to set up your PC to work within our development
+                environment. This
+                process will ensure that you have the necessary tools and access to collaborate effectively with your
+                colleagues.
+            </p>
 
-<a th:href="@{/onboarding/onboardingCompleteSetup}"
-   class="btn btn-info btn-sm">
-    Complete
-</a>
+            <b>Step 1: Install Required Software</b>
+            <br>
+            <p>
+                Download and install the following software:
+            </p>
+            <ul>
+                <li><abbr th:title="'A version control system that tracks file changes in systems.'">Git</abbr></li>
+                <li><abbr th:title="'An IDE (Integrated Development Environment) produced by Microsoft.'">Visual Studio
+                    Code</abbr></li>
+                <li><abbr th:title="'A platform that allows users to deliver software in packages called containers.'">Docker</abbr>
+                </li>
+                <li><abbr
+                        th:title="'An open-source container orchestration system for software deployment.'">Kubernetes</abbr>
+                </li>
+            </ul>
+            <p>
+                Once the installation is complete, restart your computer.
+            </p>
 
-<a th:href="@{/onboarding/onboardingHome}"
-   class="btn btn-info btn-sm">
-    Onboarding Home
-</a>
+            <b>Step 2: Configure Git</b>
+            <br>
+            <ol>
+                <li>Open Git Bash.</li>
+                <li>Create a new Git repository by typing the following command: <code>git init</code>.</li>
+                <li>Add the following remote repository URL:
+                    https://github.com/HMRevenueCustoms/hmrc-development-environment.git.
+                </li>
+                <li>Fetch and merge the latest changes from the remote repository:
+                    <code>git fetch && git merge origin/master</code>.
+                </li>
+            </ol>
+
+            <b>Step 3: Configure Visual Studio Code</b>
+            <br>
+            <ol>
+                <li>Open Visual Studio Code.</li>
+                <li>Install the following extensions:
+                    <ul>
+                        <li>GitLens</li>
+                        <li>Docker</li>
+                        <li>Kubernetes</li>
+                    </ul>
+                </li>
+
+            </ol>
+
+            <b>Step 4: Configure Docker</b>
+            <br>
+            <ol>
+                <li>Open Docker Desktop.</li>
+                <li>Sign in to Docker Hub.</li>
+                <li>Pull the following Docker image: <code>docker pull hmrc/development-environment</code></li>
+            </ol>
+
+            <b>Step 5: Configure Kubernetes</b>
+            <br>
+            <ol>
+                <li>Open the Kubernetes dashboard.</li>
+                <li>Create a new cluster.</li>
+                <li>Deploy the following Kubernetes application:
+                    <code>kubectl apply -f hmrc-development-environment.yaml</code></li>
+            </ol>
+
+            <b>Step 6: Test Your Environment</b>
+            <br>
+            <ol>
+                <li>Open a new terminal window.</li>
+                <li>Run the following command: <code>kubectl exec -it hmrc-development-environment -- bash</code></li>
+                <li>Inside the container, type <code> ls </code> to list the contents of the current directory.</li>
+            </ol>
+
+            <p>
+                If you've completed all of these steps, you should now have a working HMRC development environment. If
+                you
+                encounter
+                any problems, please reach out to your team lead or the IT help desk for assistance.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <a th:href="@{/onboarding/onboardingCompleteSetup}"
+               class="btn btn-info btn-sm">
+                Complete
+            </a>
+        </div>
+        <div class="col-lg-2">
+            <a th:href="@{/onboarding/onboardingHome}"
+               class="btn btn-info btn-sm">
+                Onboarding Home
+            </a>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
