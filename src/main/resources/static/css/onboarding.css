@@ -30,7 +30,7 @@
     margin: 5%;
 }
 
-thead th {
+thead, th {
     background-color: #460073;
     color: white;
 }
