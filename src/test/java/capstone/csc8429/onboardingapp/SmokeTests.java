@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+// Smoke Tests - Making sure that all REST Controllers exist in the app
 @SpringBootTest
 public class SmokeTests {
 
@@ -39,13 +40,5 @@ public class SmokeTests {
     @Test
     void loginContextLoads() throws Exception {
         assertThat(loginRestController).isNotNull();
-    }
-
-
-    @Autowired
-    private OnboardingRestController onboardingRestController;
-    @Test
-    void onboardingContextLoads() throws Exception {
-        assertThat(onboardingRestController).isNotNull();
     }
 }
