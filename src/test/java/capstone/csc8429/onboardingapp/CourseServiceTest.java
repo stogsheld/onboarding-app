@@ -18,7 +18,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 // Testing the Course service
-@TestPropertySource("/application.properties")
+@TestPropertySource("/test.properties")
 @SpringBootTest(classes = OnboardingAppApplication.class)
 public class CourseServiceTest {
 

@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@TestPropertySource("/application.properties")
+@TestPropertySource("/test.properties")
 @AutoConfigureMockMvc
 @SpringBootTest(classes = OnboardingAppApplication.class)
 public class CourseRestControllerTest {
