@@ -2,4 +2,5 @@ language: java
 jdk:
   - openjdk17
 script:
+  - chmod +x mvnw
   - ./mvnw clean install
