@@ -3,4 +3,5 @@ jdk:
   - openjdk17
 script:
   - chmod +x mvnw
+before_install:
   - ./mvnw clean install
