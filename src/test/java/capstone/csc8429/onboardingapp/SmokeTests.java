@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 // Smoke Tests - Making sure that all REST Controllers exist in the app
 @SpringBootTest
-@WebMvcTest
 public class SmokeTests {
 
     @Autowired

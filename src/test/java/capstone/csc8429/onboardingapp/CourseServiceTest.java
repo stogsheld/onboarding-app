@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 // Testing the Course service
 @TestPropertySource("/application.properties")
 @SpringBootTest
-@WebMvcTest
 public class CourseServiceTest {
 
     @Autowired
