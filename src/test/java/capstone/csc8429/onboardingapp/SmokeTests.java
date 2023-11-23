@@ -9,11 +9,8 @@ import org.springframework.context.ApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 
 // Smoke Tests - Making sure that all REST Controllers exist in the app
-@SpringBootTest
+@SpringBootTest(classes = OnboardingAppApplication.class)
 public class SmokeTests {
-
-    @Autowired
-    ApplicationContext context;
 
     @Autowired
     private AdminRestController adminRestController;

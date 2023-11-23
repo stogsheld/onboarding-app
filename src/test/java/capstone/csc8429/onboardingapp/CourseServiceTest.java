@@ -19,11 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 // Testing the Course service
 @TestPropertySource("/application.properties")
-@SpringBootTest
+@SpringBootTest(classes = OnboardingAppApplication.class)
 public class CourseServiceTest {
-
-    @Autowired
-    ApplicationContext context;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

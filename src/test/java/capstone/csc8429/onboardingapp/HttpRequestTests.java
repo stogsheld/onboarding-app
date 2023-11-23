@@ -9,11 +9,8 @@ import org.springframework.context.ApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = OnboardingAppApplication.class)
 public class HttpRequestTests {
-
-    @Autowired
-    ApplicationContext context;
 
     @LocalServerPort
     private int port;

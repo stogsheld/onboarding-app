@@ -25,11 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @TestPropertySource("/application.properties")
 @AutoConfigureMockMvc
-@SpringBootTest
+@SpringBootTest(classes = OnboardingAppApplication.class)
 public class CourseRestControllerTest {
-
-    @Autowired
-    ApplicationContext context;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

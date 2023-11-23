@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-@SpringBootTest
+@SpringBootTest(classes = OnboardingAppApplication.class)
 @AutoConfigureMockMvc
 class TestingWebApplicationTest {
 
