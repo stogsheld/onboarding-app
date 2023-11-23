@@ -40,35 +40,27 @@ public class SecurityConfig {
         return jdbcUserDetailsManager;
     }
 
-
-    // checking if the app is in 'test' mode
-    @Value("${inTestingMode}")
-    private boolean inTestingMode;
-
     // Adding support for user authorisation based on their role
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        if (!inTestingMode) {
-            // Authorising http requests based on a user's role
-            http.authorizeHttpRequests(configurer ->
-                            configurer
-                                    .requestMatchers("/").hasRole("EMPLOYEE")
-                                    .requestMatchers("/admin/**").hasRole("ADMIN")
-                                    .anyRequest().authenticated()
-                    )
-                    .formLogin(form ->
-                            form
-                                    .loginPage("/login")
-                                    .loginProcessingUrl("/authenticateTheUser")
-                                    .permitAll()
-                    )
-                    .logout(logout -> logout.permitAll()
-                    )
-                    .exceptionHandling(configurer ->
-                            configurer.accessDeniedPage("/access-denied")
-                    );
-        }
+        // Authorising http requests based on a user's role
+        http.authorizeHttpRequests(configurer ->
+                        configurer
+                                .requestMatchers("/").hasRole("EMPLOYEE")
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .anyRequest().authenticated()
+                )
+                .formLogin(form ->
+                        form
+                                .loginPage("/login")
+                                .loginProcessingUrl("/authenticateTheUser")
+                                .permitAll()
+                )
+                .logout(logout -> logout.permitAll()
+                )
+                .exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied")
+                );
 
         return http.build();
     }

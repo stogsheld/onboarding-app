@@ -55,19 +55,23 @@
 
 <form action="#" th:action="@{/admin/processAddCourse}" th:object="${course}" method="POST">
 
-    Course ID: <input type="number" th:field="*{courseId}">
+    <i>An asterisk (*) denotes a required field.</i>
 
     <br><br>
 
-    Course Name: <input type="text" th:field="*{courseName}">
+    Course ID *: <input type="number" th:field="*{courseId}" required minlength="1" maxlength="7">
 
     <br><br>
 
-    Course Description: <input type="text" th:field="*{courseDescription}">
+    Course Name *: <input type="text" th:field="*{courseName}" required minlength="3" maxlength="45">
 
     <br><br>
 
-    Course Content: <input type="text" th:field="*{courseContent}">
+    Course Description *: <input type="text" th:field="*{courseDescription}" required minlength="3" maxlength="1000">
+
+    <br><br>
+
+    Course Content *: <input type="text" th:field="*{courseContent}" required minlength="3" maxlength="5000">
 
     <br><br>
 

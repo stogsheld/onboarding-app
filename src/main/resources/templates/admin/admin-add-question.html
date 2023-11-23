@@ -60,27 +60,29 @@
     <br>
     <br>
 
-    Question: <input type="text" th:field="*{questionContent}">
+    <i>An asterisk (*) denotes a required field.</i>
+
+    Question *: <input type="text" th:field="*{questionContent}" required minlength="3" maxlength="45">
 
     <br><br>
 
-    Answer 1: <input type="text" th:field="*{answerOne}">
+    Answer 1 *: <input type="text" th:field="*{answerOne}" required minlength="3" maxlength="45">
 
     <br><br>
 
-    Answer 2: <input type="text" th:field="*{answerTwo}">
+    Answer 2 *: <input type="text" th:field="*{answerTwo}" required minlength="3" maxlength="45">
 
     <br><br>
 
-    Answer 3: <input type="text" th:field="*{answerThree}">
+    Answer 3 *: <input type="text" th:field="*{answerThree}" required minlength="3" maxlength="45">
 
     <br><br>
 
-    Answer 4: <input type="text" th:field="*{answerFour}">
+    Answer 4 *: <input type="text" th:field="*{answerFour}" required minlength="3" maxlength="45">
 
     <br><br>
 
-    Correct Answer:
+    Correct Answer *:
     1<input type="radio" th:field="*{correctAnswer}" th:value="1">
     2<input type="radio" th:field="*{correctAnswer}" th:value="2">
     3<input type="radio" th:field="*{correctAnswer}" th:value="3">

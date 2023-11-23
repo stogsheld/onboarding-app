@@ -54,19 +54,23 @@
 
 <form action="#" th:action="@{/admin/processAddUser}" th:object="${user}" method="POST">
 
-    Employee ID: <input type="number" th:field="*{userId}">
+    <i>An asterisk (*) denotes a required field.</i>
 
     <br><br>
 
-    First Name: <input type="text" th:field="*{firstName}">
+    Employee ID *: <input type="number" th:field="*{userId}" required minlength="3" maxlength="7">
 
     <br><br>
 
-    Last Name: <input type="text" th:field="*{lastName}">
+    First Name *: <input type="text" th:field="*{firstName}" required minlength="2" maxlength="45">
 
     <br><br>
 
-    Career Level: <input type="number" th:field="*{careerLevel}">
+    Last Name *: <input type="text" th:field="*{lastName}" required minlength="2" maxlength="45">
+
+    <br><br>
+
+    Career Level *: <input type="number" th:field="*{careerLevel}">
 
     <br><br>
 
@@ -74,7 +78,8 @@
 
     <br><br>
 
-    Email: <input type="text" th:field="*{email}">
+    Email *: <input type="text" th:field="*{email}"
+                    required minlength="3" maxlength="45" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$">
 
     <br><br>
 
