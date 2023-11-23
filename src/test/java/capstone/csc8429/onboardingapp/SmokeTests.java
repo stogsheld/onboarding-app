@@ -3,12 +3,14 @@ package capstone.csc8429.onboardingapp;
 import capstone.csc8429.onboardingapp.rest.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 // Smoke Tests - Making sure that all REST Controllers exist in the app
 @SpringBootTest
+@WebMvcTest
 public class SmokeTests {
 
     @Autowired
