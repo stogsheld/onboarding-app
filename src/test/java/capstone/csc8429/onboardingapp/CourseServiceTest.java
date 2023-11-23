@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 // Testing the Course service
 @TestPropertySource("/application.properties")
 @SpringBootTest
+@ContextConfiguration(classes = {JdbcTemplate.class, CourseService.class, CourseRepo.class})
 public class CourseServiceTest {
 
     @Autowired
