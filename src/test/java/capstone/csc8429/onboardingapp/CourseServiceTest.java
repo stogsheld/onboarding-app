@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
 
@@ -20,6 +21,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestPropertySource("/application.properties")
 @SpringBootTest
 public class CourseServiceTest {
+
+    @Autowired
+    ApplicationContext context;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
