@@ -50,14 +50,8 @@ public class CourseRestControllerTest {
     @Test
     public void getCoursesHttpRequest() throws Exception {
 
-        Course courseOne = new Course(6, "Course Example One",
-                "Course Description", "Course Content");
-
-        when(courseServiceMock.findById(6)).thenReturn(courseOne);
-
-        assertEquals(courseOne, courseServiceMock.findById(6));
-
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("http://localhost:8080/courses/list"))
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .get("http://localhost:8080/courses/list"))
                 .andExpect(status().isOk()).andReturn();
 
         ModelAndView modelAndView = mvcResult.getModelAndView();

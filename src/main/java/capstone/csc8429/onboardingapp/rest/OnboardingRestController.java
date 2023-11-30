@@ -226,45 +226,50 @@ public class OnboardingRestController {
 
         int userId = getAuthenticationId();
 
-        // Look for onboarding
+        // Retrieve user's onboarding progress
         Onboarding theOnboarding = onboardingService.findById(userId);
 
-        int currentStatus;
+        int currentStatus = getOnboardingType(updateOption);
 
-        switch (updateOption) {
-            case 1:
-                currentStatus = theOnboarding.getWelcomeCompletion();
-                if (currentStatus == 2) {
+        if (currentStatus == 2) {
+            return;
+        } else {
+            switch(updateOption) {
+                case 1:
+                    theOnboarding.setWelcomeCompletion(completionSetting);
                     break;
-                }
-                theOnboarding.setWelcomeCompletion(completionSetting);
-                break;
-            case 2:
-                currentStatus = theOnboarding.getDataEthicsCompletion();
-                if (currentStatus == 2) {
+                case 2:
+                    theOnboarding.setDataEthicsCompletion(completionSetting);
                     break;
-                }
-                theOnboarding.setDataEthicsCompletion(completionSetting);
-                break;
-            case 3:
-                currentStatus = theOnboarding.getSetupCompletion();
-                if (currentStatus == 2) {
+                case 3:
+                    theOnboarding.setSetupCompletion(completionSetting);
                     break;
-                }
-                theOnboarding.setSetupCompletion(completionSetting);
-                break;
-            case 4:
-                currentStatus = theOnboarding.getMeetTeamCompletion();
-                if (currentStatus == 2) {
+                case 4:
+                    theOnboarding.setMeetTeamCompletion(completionSetting);
                     break;
-                }
-                theOnboarding.setMeetTeamCompletion(completionSetting);
-                break;
-            default:
-                throw new RuntimeException("Invalid argument");
+                default:
+                    break;
+            }
+            onboardingService.save(theOnboarding);
         }
-        onboardingService.save(theOnboarding);
     }
+
+    public int getOnboardingType(int updateOption) {
+
+        int userId = getAuthenticationId();
+
+        // Retrieve user's onboarding progress
+        Onboarding theOnboarding = onboardingService.findById(userId);
+
+        return switch (updateOption) {
+            case 1 -> theOnboarding.getWelcomeCompletion();
+            case 2 -> theOnboarding.getDataEthicsCompletion();
+            case 3 -> theOnboarding.getSetupCompletion();
+            case 4 -> theOnboarding.getMeetTeamCompletion();
+            default -> -1;
+        };
+    }
+
 
 
     // Get users ID based on currently logged-in user
