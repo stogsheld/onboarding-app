@@ -60,11 +60,7 @@ public class OnboardingRestController {
             onboardingService.save(theOnboarding);
         }
 
-        // Work out how far through the onboarding process the user is in percentage format
-        double onboardingTotalScore = theOnboarding.getWelcomeCompletion() +
-                theOnboarding.getDataEthicsCompletion()
-                + theOnboarding.getSetupCompletion() + theOnboarding.getMeetTeamCompletion();
-        double onboardingCompletionPercentage = (onboardingTotalScore / 8) * 100;
+        double onboardingCompletionPercentage = checkOnboardingProgress();
 
         // Add onboarding progress to the model
         theModel.addAttribute("onboarding_progress", theOnboarding);
@@ -96,8 +92,11 @@ public class OnboardingRestController {
         // Get user's onboarding progress from the DB
         Onboarding onboarding = onboardingService.findById(getAuthenticationId());
 
+        double onboardingCompletionPercentage = checkOnboardingProgress();
+
         // Add onboarding progress to the model
         theModel.addAttribute("onboarding_progress", onboarding);
+        theModel.addAttribute("onboarding_percentage", onboardingCompletionPercentage);
 
         // Return the onboarding home page
         return "onboarding/onboarding-home";
@@ -144,8 +143,11 @@ public class OnboardingRestController {
         // Get new onboarding based on updated values
         Onboarding onboarding = onboardingService.findById(getAuthenticationId());
 
+        double onboardingCompletionPercentage = checkOnboardingProgress();
+
         // Add onboarding progress to the model
         theModel.addAttribute("onboarding_progress", onboarding);
+        theModel.addAttribute("onboarding_percentage", onboardingCompletionPercentage);
 
         // Return onboarding home page
         return "onboarding/onboarding-home";
@@ -163,6 +165,7 @@ public class OnboardingRestController {
         return "onboarding/onboarding-setup";
     }
 
+
     // Complete onboarding setup
     @GetMapping("/onboardingCompleteSetup")
     public String onboardingCompleteSetup(Model theModel) {
@@ -173,8 +176,11 @@ public class OnboardingRestController {
         // Get user's onboarding progress
         Onboarding onboarding = onboardingService.findById(getAuthenticationId());
 
+        double onboardingCompletionPercentage = checkOnboardingProgress();
+
         // Add onboarding progress to the model
         theModel.addAttribute("onboarding_progress", onboarding);
+        theModel.addAttribute("onboarding_percentage", onboardingCompletionPercentage);
 
         // Return onboarding home page
         return "onboarding/onboarding-home";
@@ -198,6 +204,8 @@ public class OnboardingRestController {
         // Add other team members to the model
         theModel.addAttribute("users", users);
 
+        System.out.println(users.get(0).getUserId());
+
         // Return onboarding 'Meet the Team' page
         return "onboarding/onboarding-meet-the-team";
     }
@@ -212,8 +220,11 @@ public class OnboardingRestController {
         // Get user's onboarding progress
         Onboarding onboarding = onboardingService.findById(getAuthenticationId());
 
+        double onboardingCompletionPercentage = checkOnboardingProgress();
+
         // Add user's onboarding progress to the model
         theModel.addAttribute("onboarding_progress", onboarding);
+        theModel.addAttribute("onboarding_percentage", onboardingCompletionPercentage);
 
         // returning the onboarding-home html file
         return "onboarding/onboarding-home";
@@ -268,6 +279,22 @@ public class OnboardingRestController {
             case 4 -> theOnboarding.getMeetTeamCompletion();
             default -> -1;
         };
+    }
+
+    public double checkOnboardingProgress() {
+
+        int userId = getAuthenticationId();
+
+        Onboarding theOnboarding = onboardingService.findById(userId);
+
+        // Work out how far through the onboarding process the user is in percentage format
+        double onboardingTotalScore = theOnboarding.getWelcomeCompletion() +
+                theOnboarding.getDataEthicsCompletion()
+                + theOnboarding.getSetupCompletion() + theOnboarding.getMeetTeamCompletion();
+
+        System.out.println(onboardingTotalScore);
+
+        return (onboardingTotalScore / 8) * 100;
     }
 
 

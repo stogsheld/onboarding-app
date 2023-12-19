@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `onboarding_app`.`course_completion` (
   `refresher_date` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`attempt_no`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -47,6 +47,10 @@ CREATE TABLE IF NOT EXISTS `onboarding_app`.`course_info` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+INSERT INTO `onboarding_app`.`course_info` VALUES 
+	(1,'Introduction to Data Security','Example Description','Example Course Content'),
+	(2,'Intro to Ethics','Example','Example');
 
 
 -- -----------------------------------------------------
@@ -68,9 +72,18 @@ CREATE TABLE IF NOT EXISTS `onboarding_app`.`course_question` (
     FOREIGN KEY (`course_id`)
     REFERENCES `onboarding_app`.`course_info` (`course_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+INSERT INTO `onboarding_app`.`course_question` VALUES 
+	(1, 1, 'Question 1', 1,'Answer 1','Answer 2 (Correct)', 'Answer 3', 'Answer 4', 2),
+	(2, 2, 'Question 2', 1,'Answer 1','Answer 2', 'Answer 3 (Correct)', 'Answer 4', 3),
+	(3, 3, 'Question 3', 1,'Answer 1 (Correct)','Answer 2', 'Answer 3', 'Answer 4', 1),
+	(4, 1, 'Question 1', 2,'Answer 1','Answer 2 (Correct)', 'Answer 3', 'Answer 4', 2),
+	(5, 2, 'Question 2', 2,'Answer 1','Answer 2 (Correct)', 'Answer 3', 'Answer 4', 2),
+	(6, 3, 'Question 3', 2,'Answer 1','Answer 2 (Correct)', 'Answer 3', 'Answer 4', 2);
+
 
 
 -- -----------------------------------------------------
@@ -98,10 +111,16 @@ CREATE TABLE IF NOT EXISTS `onboarding_app`.`roles` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `authorities5_idx_1` (`user_id` ASC, `role` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = latin1;
 
-
+INSERT INTO `onboarding_app`.`roles` VALUES 
+	(1,11111,'ROLE_ADMIN'),
+	(2,11111,'ROLE_EMPLOYEE'),
+	(3,22222,'ROLE_EMPLOYEE');
+    
+    
+    
 -- -----------------------------------------------------
 -- Table `onboarding_app`.`user`
 -- -----------------------------------------------------
@@ -117,6 +136,11 @@ CREATE TABLE IF NOT EXISTS `onboarding_app`.`user` (
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
+
+INSERT INTO `onboarding_app`.`user` VALUES 
+	(11111, '{bcrypt}$2a$12$vYZLC7ubVYrbP/UH.dreROKA.wKQ/dKWS70gXIVgV5Af4B0Qgc1z2', 1, 'TESTADMIN', 'LASTNAME', 4, 'Scrum Team 5', 'testadmin@accenture.com'),
+	(22222, '{bcrypt}$2a$12$vYZLC7ubVYrbP/UH.dreROKA.wKQ/dKWS70gXIVgV5Af4B0Qgc1z2', 1, 'TESTNONADMIN', 'LASTNAME', 10, 'Scrum Team 2', 'testnonadmin@accenture.com');
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

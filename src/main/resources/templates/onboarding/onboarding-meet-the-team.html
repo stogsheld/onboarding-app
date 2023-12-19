@@ -61,7 +61,22 @@
             <h3>Onboarding - Meet the Team</h3>
             <p>
                 Meet the team you'll be working with here!
+                <br>
             </p>
+
+            <p th:each="tempUser : ${users}">
+
+                <b th:text="${tempUser.firstName} + ' ' + ${tempUser.lastName}"/>
+                <br>
+                <i th:text="'User ID: ' + ${tempUser.userId}"/>
+                <br>
+                <i th:text="'Email Address: ' + ${tempUser.email}"/>
+                <br>
+                <i th:text="'Career Level: ' + ${tempUser.careerLevel}"/>
+                <br><br>
+
+            </p>
+
         </div>
     </div>
     <div class="row">
